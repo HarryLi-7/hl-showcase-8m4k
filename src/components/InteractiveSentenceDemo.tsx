@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { DEMO_SENTENCES, DemoSentence } from '../data/content'
 import { Sparkles, Volume2, BookOpen, Layers, Check } from 'lucide-react'
+import { SpotlightCard } from './SpotlightCard'
 
 interface InteractiveSentenceDemoProps {
   lang: 'zh' | 'ja'
@@ -24,13 +25,14 @@ export const InteractiveSentenceDemo: React.FC<InteractiveSentenceDemoProps> = (
     utterance.rate = 0.95
 
     const voices = window.speechSynthesis.getVoices()
-    // Select mature natural adult voice, avoiding high-pitched child voice
-    const jaVoice = voices.find(
-      (v) =>
-        v.lang.startsWith('ja') &&
-        !v.name.includes('Aoi') &&
-        (v.name.includes('Nanami') || v.name.includes('Kyoko') || v.name.includes('Otoya') || true)
-    )
+    // Select mature natural adult voice, strictly avoiding high-pitched Aoi voice
+    const jaVoices = voices.filter((v) => v.lang.startsWith('ja') && !v.name.includes('Aoi'))
+    const jaVoice =
+      jaVoices.find((v) =>
+        ['Nanami', 'Mayu', 'Shiori', 'Keita', 'Naoki', 'Daichi', 'Kyoko', 'Otoya'].some((n) =>
+          v.name.includes(n)
+        )
+      ) || jaVoices[0]
     if (jaVoice) {
       utterance.voice = jaVoice
     }
@@ -48,38 +50,39 @@ export const InteractiveSentenceDemo: React.FC<InteractiveSentenceDemoProps> = (
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-1">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{lang === 'zh' ? '交互式现场查验' : 'INTERACTIVE LIVE DEMO'}</span>
+            <div className="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold uppercase tracking-widest text-zinc-500 mb-1">
+              <Sparkles className="w-3.5 h-3.5 text-[#FBBC05]" />
+              <span>LIVE CONSOLE // {lang === 'zh' ? '交互式现场查验' : 'INTERACTIVE LIVE DEMO'}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950" style={{ letterSpacing: '-0.025em' }}>
               {lang === 'zh' ? 'JLPT N1 商务实战微特训器' : 'JLPT N1・BJT 実践例文インタラクティブ検証'}
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 max-w-sm">
+          <p className="text-xs sm:text-sm text-zinc-500 max-w-sm">
             {lang === 'zh'
-              ? '提取自本人自研「JLPT 句型特训系统」的核心模块，你可以在此实时试玩高阶商务句型的形态素拆解与语境。'
-              : '独自開発「JLPT学習システム」のコア機能を本ポートフォリオ内に直接移植。品詞解析とビジネス文脈をリアルタイム検証可能です。'}
+              ? '提取自本人自研「JLPT 句型特训系统」的核心模块，模拟硬件中控台手感进行形态素拆解与语音朗读。'
+              : '独自開発「JLPT学習システム」のコア機能を本ポートフォリオ内に直接移植。リアルタイム音声・構文検証が可能です。'}
           </p>
         </div>
 
-        {/* Interactive Box */}
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-zinc-200/80 dark:border-zinc-800 relative overflow-hidden shadow-sm">
-          {/* Top Sentence Switcher Tabs */}
-          <div className="flex flex-wrap gap-2 mb-6 pb-4 border-b border-zinc-200/70 dark:border-zinc-800/80">
+        {/* Cockpit-style Interactive Card */}
+        <SpotlightCard className="rounded-3xl p-6 sm:p-8">
+          {/* Segmented Control Sentence Tabs */}
+          <div className="flex flex-wrap gap-2 mb-6 pb-4 border-b border-zinc-200/80 relative">
             {DEMO_SENTENCES.map((item) => {
               const active = item.id === selectedId
               return (
                 <button
+                  type="button"
                   key={item.id}
                   onClick={() => setSelectedId(item.id)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
                     active
-                      ? 'bg-blue-600 text-white shadow-xs scale-[1.02]'
-                      : 'bg-zinc-100 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800'
+                      ? 'bg-zinc-900 text-white shadow-xs'
+                      : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-900'
                   }`}
                 >
-                  {lang === 'zh' ? `例句 ${item.id}：` : `例文 ${item.id}：`}
+                  {lang === 'zh' ? `例句 ${item.id} · ` : `例文 ${item.id} · `}
                   {item.id === 1 && (lang === 'zh' ? '求职志望动机' : '志望動機・自己PR')}
                   {item.id === 2 && (lang === 'zh' ? '业务自动化实施' : '業務改善・自動化')}
                   {item.id === 3 && (lang === 'zh' ? '对日礼仪与协作' : 'ビジネスマナー・協調性')}
@@ -88,97 +91,116 @@ export const InteractiveSentenceDemo: React.FC<InteractiveSentenceDemoProps> = (
             })}
           </div>
 
-          {/* Sentence Display Area */}
-          <div className="p-6 rounded-2xl bg-zinc-50/80 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/60 mb-6">
-            <div className="flex items-center justify-between gap-4 mb-3">
-              <span className="text-xs font-mono font-medium px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-700 dark:text-amber-300">
-                {lang === 'zh' ? '高阶语法解析' : '文型・構文ポイント'}：{lang === 'zh' ? activeSentence.grammarPoint : activeSentence.grammarPointJa}
+          {/* Sentence Display Console */}
+          <div className="p-5 sm:p-6 rounded-2xl bg-zinc-50/90 border border-zinc-200/80 mb-5 relative">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-lg bg-white border border-zinc-200 text-zinc-700">
+                {lang === 'zh' ? '语法要点' : '構文ポイント'}：{lang === 'zh' ? activeSentence.grammarPoint : activeSentence.grammarPointJa}
               </span>
 
-              {/* Speak Audio Button */}
-              <button
-                onClick={() => handleSpeak(activeSentence.japanese)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium border transition-colors ${
-                  isPlaying
-                    ? 'bg-emerald-500 text-white border-emerald-500 animate-pulse'
-                    : 'bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100'
-                }`}
-                title="点击试听原生发音"
-              >
-                <Volume2 className="w-3.5 h-3.5" />
-                <span>{isPlaying ? (lang === 'zh' ? '播放中...' : '再生中...') : (lang === 'zh' ? '朗读发音' : '音声再生')}</span>
-              </button>
+              {/* Speak Audio + Tesla Waveform Indicator */}
+              <div className="flex items-center gap-3">
+                <div
+                  className={`flex items-end gap-1 h-4 px-1 text-zinc-800 ${isPlaying ? 'wave-playing' : 'opacity-40'}`}
+                  aria-hidden="true"
+                >
+                  <span className="wave-bar w-1 h-3 rounded-full bg-current origin-bottom" style={{ animationDelay: '0ms' }} />
+                  <span className="wave-bar w-1 h-4 rounded-full bg-current origin-bottom" style={{ animationDelay: '120ms' }} />
+                  <span className="wave-bar w-1 h-2.5 rounded-full bg-current origin-bottom" style={{ animationDelay: '220ms' }} />
+                  <span className="wave-bar w-1 h-4 rounded-full bg-current origin-bottom" style={{ animationDelay: '90ms' }} />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => handleSpeak(activeSentence.japanese)}
+                  className={`expressive-pill inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer ${
+                    isPlaying ? 'ring-2 ring-[#34A853]/40' : ''
+                  }`}
+                  title={lang === 'zh' ? '点击试听日语朗读' : '日本語音声を再生'}
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                  <span>{isPlaying ? (lang === 'zh' ? '朗读中...' : '再生中...') : (lang === 'zh' ? '朗读发音' : '音声再生')}</span>
+                </button>
+              </div>
             </div>
 
-            {/* Japanese Text */}
-            <div className="text-lg sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50 leading-relaxed tracking-wide mb-3 font-jp">
+            {/* Japanese Sentence */}
+            <div className="text-lg sm:text-2xl font-bold text-zinc-950 leading-relaxed tracking-wide mb-3 font-jp">
               {activeSentence.japanese}
+            </div>
+
+            {/* Google 4-color subtle Part-of-Speech badge legend */}
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#4285F4]/10 text-[#1d4ed8]">名詞・実務</span>
+              <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#EA4335]/10 text-[#b91c1c]">動詞</span>
+              <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#FBBC05]/15 text-[#92400e]">助詞</span>
+              <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#34A853]/12 text-[#15803d]">敬語・謙譲語</span>
             </div>
 
             {/* Furigana Display */}
             {showFurigana && (
-              <div className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-mono leading-relaxed mb-2 bg-zinc-200/40 dark:bg-zinc-800/40 px-3 py-2 rounded-lg">
-                <span className="text-zinc-400 dark:text-zinc-500 mr-2">[假名]</span>
+              <div className="text-xs sm:text-sm text-zinc-600 font-mono leading-relaxed mb-2 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/80">
+                <span className="text-zinc-500 mr-2">[假名]</span>
                 {activeSentence.furigana}
               </div>
             )}
 
             {/* Romaji Display */}
             {showRomaji && (
-              <div className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-mono leading-relaxed mb-2 bg-zinc-200/40 dark:bg-zinc-800/40 px-3 py-2 rounded-lg">
-                <span className="text-zinc-400 dark:text-zinc-500 mr-2">[罗马音]</span>
+              <div className="text-xs sm:text-sm text-zinc-600 font-mono leading-relaxed mb-2 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/80">
+                <span className="text-zinc-500 mr-2">[罗马音]</span>
                 {activeSentence.romaji}
               </div>
             )}
 
             {/* Translation & Context */}
-            <div className="pt-3 border-t border-zinc-200/60 dark:border-zinc-800/60">
-              <div className="text-sm sm:text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-1">
+            <div className="pt-3 mt-3 border-t border-zinc-200/80">
+              <div className="text-sm sm:text-base font-semibold text-zinc-900 mb-1">
                 {lang === 'zh' ? activeSentence.translation : activeSentence.translationJa}
               </div>
-              <div className="text-xs text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5 shrink-0" />
+              <div className="text-xs text-zinc-600 flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5 text-[#4285F4] shrink-0" />
                 <span>{lang === 'zh' ? activeSentence.businessContext : activeSentence.businessContextJa}</span>
               </div>
             </div>
           </div>
 
-          {/* Controls Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-zinc-600 dark:text-zinc-400">
+          {/* Controls Footer */}
+          <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-zinc-600 relative">
             <div className="flex items-center gap-4">
-              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none">
+              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none font-medium">
                 <input
                   type="checkbox"
                   checked={showFurigana}
                   onChange={(e) => setShowFurigana(e.target.checked)}
-                  className="rounded border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-500"
+                  className="rounded border-zinc-300 text-zinc-900 accent-zinc-900"
                 />
                 <span>{lang === 'zh' ? '平假名注音' : 'ふりがな表示'}</span>
               </label>
 
-              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none">
+              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none font-medium">
                 <input
                   type="checkbox"
                   checked={showRomaji}
                   onChange={(e) => setShowRomaji(e.target.checked)}
-                  className="rounded border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-500"
+                  className="rounded border-zinc-300 text-zinc-900 accent-zinc-900"
                 />
                 <span>{lang === 'zh' ? '罗马音' : 'ローマ字'}</span>
               </label>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 font-mono text-[11px]">
-                <Layers className="w-3 h-3 text-zinc-400" />
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-zinc-100 border border-zinc-200/80 font-mono text-[11px] text-zinc-700">
+                <Layers className="w-3 h-3 text-zinc-500" />
                 Kuromoji NLP Engine
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[11px] font-semibold">
-                <Check className="w-3 h-3" />
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-zinc-100 border border-zinc-200/80 text-[11px] font-semibold text-zinc-800">
+                <Check className="w-3 h-3 text-[#34A853]" />
                 N1 / BJT 对齐
               </span>
             </div>
           </div>
-        </div>
+        </SpotlightCard>
       </div>
     </section>
   )

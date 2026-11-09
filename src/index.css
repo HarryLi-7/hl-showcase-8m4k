@@ -1,95 +1,237 @@
 @import "tailwindcss";
 
-@variant dark (&:where(.dark, .dark *));
-
 @theme {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-jp: 'Noto Sans JP', 'Plus Jakarta Sans', sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'SF Pro Display', system-ui, sans-serif;
+  --font-jp: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Registered spotlight gradient stop properties for smooth pointer interpolation */
+@property --inner-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --outer-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
+  --canvas-bg: #fcfcfb;
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-border: rgba(15, 23, 42, 0.09);
+  --glass-bg: rgba(255, 255, 255, 0.74);
+  --glass-specular: rgba(255, 255, 255, 0.96);
+  --ink-primary: #111216;
+  --ink-muted: #5a6270;
+  --spotlight-tint: rgba(37, 99, 235, 0.065);
+  --spring-easing: linear(0, 0.214 14.7%, 0.386 23.7%, 0.598 31.9%, 0.999 44.7%, 0.807 52.6%, 0.762 56%, 0.747 59.4%, 0.758 62.4%, 0.793 65.6%, 0.999 77.4%, 0.961 81.2%, 0.949 84.8%, 0.956 88%, 0.993 95.5%, 1);
+  --bounce-easing: linear(0, 0.016 0.5%, 0.06 1%, 0.226 2%, 1.116 5.4%, 1.375 6.6%, 1.527 7.7%, 1.565 8.2%, 1.585 8.8%, 1.581 9.3%, 1.559 9.8%, 1.458 10.9%, 0.937 14.3%, 0.784 15.5%, 0.693 16.6%, 0.67 17.1%, 0.657 17.7%, 0.671 18.7%, 0.729 19.8%, 1.042 23.3%, 1.13 24.5%, 1.182 25.6%, 1.201 26.7%, 1.192 27.7%, 1.156 28.8%, 0.977 32.2%, 0.925 33.4%, 0.894 34.5%, 0.882 35.6%, 0.887 36.6%, 0.907 37.7%, 1.045 42.4%, 1.069 44.5%, 1.059 46.3%, 0.979 50.9%, 0.96 53.4%, 0.966 55.3%, 1.013 59.9%, 1.024 62.3%, 0.986 71.2%, 1.008 79.9%, 0.995 88.9%, 1);
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
 }
 
-/* Glassmorphism & subtle ambient mesh */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(228, 228, 231, 0.8);
+/* Sunlit ceramic white editorial backdrop with hairline architectural grid */
+.editorial-canvas {
+  background-color: var(--canvas-bg);
+  background-image:
+    radial-gradient(760px circle at 15% 4%, rgba(66, 133, 244, 0.055), transparent 60%),
+    radial-gradient(640px circle at 88% 8%, rgba(52, 168, 83, 0.045), transparent 58%),
+    linear-gradient(to right, rgba(15, 23, 42, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.028) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
 }
 
-.dark .glass-panel {
-  background: rgba(18, 18, 22, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Apple Liquid Glass floating navigation and dock chrome */
+.liquid-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  border: 1px solid var(--card-border);
+  box-shadow:
+    inset 0 1px 0 var(--glass-specular),
+    0 14px 36px -18px rgba(15, 23, 42, 0.16);
 }
 
-.glow-card {
+/* White Ceramic Bento Card + Tesla Precision Hairlines + Progressive Squircle */
+.bento-card {
   position: relative;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow:
+    inset 0 1px 0 var(--glass-specular),
+    0 4px 20px -10px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  transition: transform 0.55s ease-out, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition-timing-function: var(--spring-easing), ease, ease;
 }
 
-.glow-card:hover {
+@supports (corner-shape: squircle) {
+  .bento-card,
+  .liquid-glass {
+    corner-shape: squircle;
+  }
+}
+
+@supports not (transition-timing-function: linear(0, 1)) {
+  .bento-card {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1), ease, ease;
+  }
+}
+
+.bento-card:hover {
   transform: translateY(-2px);
+  border-color: rgba(15, 23, 42, 0.18);
+  box-shadow:
+    inset 0 1px 0 var(--glass-specular),
+    0 16px 36px -16px rgba(15, 23, 42, 0.11);
 }
 
-.dark .glow-card:hover {
-  box-shadow: 0 12px 36px -10px rgba(59, 130, 246, 0.12);
-  border-color: rgba(96, 165, 250, 0.3);
+/* Meta Spatial Pointer Spotlight Layer */
+.spotlight-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --inner-size: 0px;
+  --outer-size: 0px;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  background: radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), var(--spotlight-tint), transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at var(--mouse-x) var(--mouse-y), black var(--inner-size, 0%), transparent var(--outer-size, 0%));
+  mask-image: radial-gradient(circle at var(--mouse-x) var(--mouse-y), black var(--inner-size, 0%), transparent var(--outer-size, 0%));
+  mask-repeat: no-repeat;
+  transition: --inner-size 0.24s ease-out, --outer-size 0.24s ease-out;
 }
 
-.glow-card:hover {
-  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.08);
+.bento-card:hover .spotlight-layer {
+  --inner-size: 95px;
+  --outer-size: 270px;
 }
 
-/* Custom minimal scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.3);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.5);
+/* Google Material 3 Expressive Pill CTA with Spring Feedback */
+.expressive-pill {
+  background-color: var(--ink-primary);
+  color: #ffffff;
+  transition: transform 0.45s ease-out, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition-timing-function: var(--bounce-easing), ease, ease;
 }
 
-/* Print Stylesheet: Resume Replacement Print Mode */
+@supports not (transition-timing-function: linear(0, 1)) {
+  .expressive-pill {
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1), ease, ease;
+  }
+}
+
+.expressive-pill:hover:not(:disabled) {
+  transform: scale(1.025);
+  background-color: #1f2229;
+}
+
+.expressive-pill:active:not(:disabled) {
+  transform: scale(0.975);
+}
+
+/* Native <dialog> light-dismiss backdrop & entry motion */
+dialog.command-dialog {
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    display 0.2s allow-discrete,
+    overlay 0.2s allow-discrete;
+}
+
+@supports (transition-timing-function: linear(0, 1)) {
+  dialog.command-dialog {
+    transition-timing-function: ease-out, var(--spring-easing), ease, ease;
+  }
+}
+
+dialog.command-dialog[open] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@starting-style {
+  dialog.command-dialog[open] {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+dialog.command-dialog::backdrop {
+  background-color: rgba(15, 23, 42, 0.32);
+  backdrop-filter: blur(8px);
+}
+
+/* Equalizer waveform bars for Japanese demo */
+@keyframes wavePulse {
+  0%, 100% {
+    transform: scaleY(0.32);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.wave-playing .wave-bar {
+  animation: wavePulse 0.72s ease-in-out infinite;
+}
+
+/* Accessibility: honor prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .bento-card,
+  .expressive-pill,
+  .spotlight-layer,
+  dialog.command-dialog,
+  .wave-bar {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Forced Colors / High Contrast Mode resilience */
+@media (forced-colors: active) {
+  .bento-card,
+  .liquid-glass {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* Print Stylesheet: Authoritative Clean White Resume Mode */
 @media print {
   @page {
     margin: 1.2cm;
     size: A4 portrait;
   }
 
-  body {
+  body,
+  .editorial-canvas {
     background: #ffffff !important;
+    background-image: none !important;
     color: #09090b !important;
-    font-size: 11pt !important;
+    font-size: 10.5pt !important;
   }
 
   header,
   aside,
   footer,
-  .no-print {
+  .no-print,
+  .spotlight-layer {
     display: none !important;
   }
 
-  .glass-panel {
-    background: transparent !important;
+  .bento-card,
+  .liquid-glass {
+    background: #ffffff !important;
     backdrop-filter: none !important;
-    border: 1px solid #e4e4e7 !important;
+    border: 1px solid #d4d4d8 !important;
     box-shadow: none !important;
-  }
-
-  .glow-card {
     transform: none !important;
-    box-shadow: none !important;
     break-inside: avoid;
   }
 

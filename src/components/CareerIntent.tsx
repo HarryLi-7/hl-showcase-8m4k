@@ -1,5 +1,6 @@
 import React from 'react'
 import { Briefcase, MapPin, Calendar, Clock } from 'lucide-react'
+import { SpotlightCard } from './SpotlightCard'
 
 interface CareerIntentProps {
   lang: 'zh' | 'ja'
@@ -7,32 +8,31 @@ interface CareerIntentProps {
 
 export const CareerIntent: React.FC<CareerIntentProps> = ({ lang }) => {
   return (
-    <section id="intent" className="py-8">
+    <section id="intent" className="py-8 md:py-10">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="glass-panel rounded-2xl p-6 sm:p-7 border border-blue-500/20 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 pb-5 border-b border-zinc-200/80 dark:border-zinc-800">
+        <SpotlightCard className="rounded-3xl p-6 sm:p-7">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 pb-5 border-b border-zinc-200/80 relative">
             <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1">
-                {lang === 'zh' ? '意向方向与配合方式' : '希望条件・ワークスタイル'}
+              <div className="text-[11px] font-mono font-semibold uppercase tracking-widest text-zinc-500 mb-1">
+                {lang === 'zh' ? 'ALIGNMENT // 意向方向与配合方式' : 'ALIGNMENT // 希望条件・ワークスタイル'}
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950" style={{ letterSpacing: '-0.02em' }}>
                 {lang === 'zh' ? '清晰的能力定位与务实工作诉求' : '明確な専門領域と柔軟な協業スタンス'}
               </h2>
             </div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              {lang === 'zh' ? '脱敏公开展示 · 支持正式渠道沟通' : '匿名公開モード・正規ルートより面談調整可'}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-zinc-100 text-zinc-800 border border-zinc-200">
+              <span className="w-2 h-2 rounded-full bg-[#34A853]" aria-hidden="true" />
+              <span>{lang === 'zh' ? '脱敏公开展示 · 支持正式渠道沟通' : '匿名公開モード・正規ルートより調整可'}</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs sm:text-sm">
-            {/* Target Role */}
-            <div className="p-4 rounded-xl bg-white/70 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800">
-              <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 mb-1.5 text-xs font-medium">
-                <Briefcase className="w-4 h-4 text-blue-500" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs sm:text-sm relative">
+            <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200/80">
+              <div className="flex items-center gap-2 text-zinc-500 mb-1.5 text-xs font-medium">
+                <Briefcase className="w-4 h-4 text-[#4285F4]" />
                 <span>{lang === 'zh' ? '专注应用领域' : 'ターゲット領域'}</span>
               </div>
-              <div className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">
+              <div className="font-bold text-zinc-950 text-sm">
                 {lang === 'zh' ? '对日商务运营 · 流程助理' : '対日ビジネス推進・営業支援'}
               </div>
               <div className="text-zinc-500 text-xs mt-1">
@@ -40,13 +40,12 @@ export const CareerIntent: React.FC<CareerIntentProps> = ({ lang }) => {
               </div>
             </div>
 
-            {/* Location & Radius */}
-            <div className="p-4 rounded-xl bg-white/70 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800">
-              <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 mb-1.5 text-xs font-medium">
-                <MapPin className="w-4 h-4 text-emerald-500" />
+            <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200/80">
+              <div className="flex items-center gap-2 text-zinc-500 mb-1.5 text-xs font-medium">
+                <MapPin className="w-4 h-4 text-[#34A853]" />
                 <span>{lang === 'zh' ? '城市与通勤偏好' : '希望勤務エリア'}</span>
               </div>
-              <div className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">
+              <div className="font-bold text-zinc-950 text-sm">
                 {lang === 'zh' ? '沿海一线城市核心城区' : '主要都市圏（オンライン・出社両対応）'}
               </div>
               <div className="text-zinc-500 text-xs mt-1">
@@ -54,13 +53,12 @@ export const CareerIntent: React.FC<CareerIntentProps> = ({ lang }) => {
               </div>
             </div>
 
-            {/* Work Model */}
-            <div className="p-4 rounded-xl bg-white/70 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800">
-              <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 mb-1.5 text-xs font-medium">
-                <Clock className="w-4 h-4 text-amber-500" />
+            <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200/80">
+              <div className="flex items-center gap-2 text-zinc-500 mb-1.5 text-xs font-medium">
+                <Clock className="w-4 h-4 text-[#FBBC05]" />
                 <span>{lang === 'zh' ? '作息与保障期望' : '就労形態・待遇基準'}</span>
               </div>
-              <div className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">
+              <div className="font-bold text-zinc-950 text-sm">
                 {lang === 'zh' ? '标准双休 · 规范社保保障' : '完全週休2日制・社会保険完備'}
               </div>
               <div className="text-zinc-500 text-xs mt-1">
@@ -68,13 +66,12 @@ export const CareerIntent: React.FC<CareerIntentProps> = ({ lang }) => {
               </div>
             </div>
 
-            {/* Mobility */}
-            <div className="p-4 rounded-xl bg-white/70 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800">
-              <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 mb-1.5 text-xs font-medium">
-                <Calendar className="w-4 h-4 text-purple-500" />
+            <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200/80">
+              <div className="flex items-center gap-2 text-zinc-500 mb-1.5 text-xs font-medium">
+                <Calendar className="w-4 h-4 text-[#EA4335]" />
                 <span>{lang === 'zh' ? '配合度与差旅' : '対応柔軟性・出張'}</span>
               </div>
-              <div className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">
+              <div className="font-bold text-zinc-950 text-sm">
                 {lang === 'zh' ? '支持差旅 · 可快速协调安排' : '出張対応可・柔軟なスケジュール調整'}
               </div>
               <div className="text-zinc-500 text-xs mt-1">
@@ -82,7 +79,7 @@ export const CareerIntent: React.FC<CareerIntentProps> = ({ lang }) => {
               </div>
             </div>
           </div>
-        </div>
+        </SpotlightCard>
       </div>
     </section>
   )

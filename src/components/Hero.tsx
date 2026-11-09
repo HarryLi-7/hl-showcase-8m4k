@@ -1,5 +1,6 @@
 import React from 'react'
-import { Sparkles, ShieldCheck, ArrowDownRight, CheckCircle2, Printer } from 'lucide-react'
+import { ArrowDownRight, ShieldCheck, Printer, Sparkles, Lock } from 'lucide-react'
+import { SpotlightCard } from './SpotlightCard'
 
 interface HeroProps {
   lang: 'zh' | 'ja'
@@ -10,119 +11,148 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
   const handlePrint = () => {
     window.print()
   }
-  return (
-    <section className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none -z-10 opacity-40 dark:opacity-25">
-        <div className="absolute top-10 left-1/4 w-72 h-72 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-20 right-1/4 w-80 h-80 bg-indigo-500/25 rounded-full blur-3xl"></div>
-        <div className="absolute top-40 left-1/2 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl"></div>
-      </div>
 
+  return (
+    <section className="relative pt-10 pb-10 md:pt-16 md:pb-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        {/* Top Badges */}
+        {/* Crisp Editorial Status Pills */}
         <div className="flex flex-wrap items-center gap-2 mb-6">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-2xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-ping"></span>
-            {lang === 'zh' ? 'AI 原生工程 · 商务日语作品展台' : 'AIエンジニアリング・ビジネス日本語 ポートフォリオ'}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-white border border-zinc-200/90 text-zinc-700 shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-[#34A853]" aria-hidden="true" />
+            <span>{lang === 'zh' ? 'AI 原生工程 · 商务日语复合展台' : 'AIエンジニアリング × ビジネス日本語'}</span>
           </div>
-          <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300">
-            <span>📍</span>
-            <span>{lang === 'zh' ? '华南沿海城市（可远程/线下沟通）' : '華南エリア（リモート・対面面談対応可）'}</span>
-          </div>
-          <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-            <span>{lang === 'zh' ? '个人信息已脱敏（仅展示技术与语言能力）' : '個人情報非公開モード（スキル・実績のみ掲載）'}</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white border border-zinc-200/90 text-zinc-600 shadow-2xs">
+            <Lock className="w-3 h-3 text-zinc-500" />
+            <span>{lang === 'zh' ? '个人信息已脱敏（仅展实力与作品）' : '個人情報非公開モード公開中'}</span>
           </div>
         </div>
 
-        {/* Hero Title */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-[1.15] mb-6">
+        {/* Apple / Paco Editorial Display Typography */}
+        <h1
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-zinc-950 leading-[1.16] sm:leading-[1.08] mb-6"
+          style={{ letterSpacing: '-0.035em' }}
+        >
           {lang === 'zh' ? (
             <>
-              用 <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">AI 原生工程力</span> 与 <span className="bg-gradient-to-r from-amber-500 to-rose-500 bg-clip-text text-transparent">商务日语</span>，
-              <br className="hidden sm:inline" /> 交付确定性的实际成果。
+              用工程的确定性，
+              <br />
+              交付{' '}
+              <span className="underline decoration-zinc-300 decoration-2 underline-offset-4 sm:underline-offset-8">
+                AI 工具产品
+              </span>{' '}
+              与跨语种效率。
             </>
           ) : (
             <>
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">AIエンジニアリング力</span> と <span className="bg-gradient-to-r from-amber-500 to-rose-500 bg-clip-text text-transparent">ビジネス日本語</span> で、
-              <br className="hidden sm:inline" /> 確かな価値と事業成果を創出する。
+              エンジニアリングの確実性で、
+              <br />
+              <span className="underline decoration-zinc-300 decoration-2 underline-offset-4 sm:underline-offset-8">
+                AIプロダクト
+              </span>
+              と日系実務を駆動する。
             </>
           )}
         </h1>
 
-        {/* Hero Description */}
-        <p className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-3xl mb-8">
+        {/* Concise High-Signal Intro */}
+        <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-3xl mb-8">
           {lang === 'zh' ? (
             <>
-              你好，我是 <strong className="text-zinc-900 dark:text-white font-semibold">Alex Lin（匿名示例档案）</strong>。
-              本科学历背景，具备 <strong className="text-zinc-900 dark:text-white font-semibold">高阶商务日语</strong> 读写与沟通能力，并深度运用 AI 工程工具独立开发落地 4 款软件产品（含微信原生小程序、桌面端、音频管线及 Web 系统）。
-              完整实名信息、证件原件与直接联系方式出于隐私保护已在本公开页隐去，可在正式沟通阶段按需提供。
+              你好，我是 <strong className="text-zinc-950 font-semibold">Alex Lin（匿名示例档案）</strong>。
+              本科学历背景，具备高阶商务日语读写与沟通实战力，并借助现代 AI 工程工作流端到端独立落地{' '}
+              <strong className="text-zinc-950 font-semibold">4 款软件应用</strong>（含原生微信小程序、桌面端、长音频转录管线及 NLP Web 系统）。
+              个人实名、电话、微信及证件原件已在此公开页隐去，正式沟通后随时核验。
             </>
           ) : (
             <>
-              はじめまして、<strong className="text-zinc-900 dark:text-white font-semibold">Alex Lin（匿名公開プロフィール）</strong>と申します。
-              学士課程修了、高度な<strong className="text-zinc-900 dark:text-white font-semibold">ビジネス日本語能力</strong>を備え、AI開発ツールを活用して4本のプロダクト（WeChatミニプログラム・デスクトップ・音声パイプライン・Webアプリ）を独力開発いたしました。
-              個人情報・証明書番号・直接連絡先はプライバシー保護のため本ページでは非公開とし、面談時に別途共有いたします。
+              はじめまして、<strong className="text-zinc-950 font-semibold">Alex Lin（匿名公開プロフィール）</strong>と申します。
+              学士課程修了、高度なビジネス日本語運用力を備え、AI開発ワークフローを駆使して{' '}
+              <strong className="text-zinc-950 font-semibold">4本のソフトウェア</strong>（WeChatミニプログラム・デスクトップ・音声パイプライン・Webアプリ）を独力実装いたしました。
+              個人情報・証明書原本は非公開とし、面談時にご提示いたします。
             </>
           )}
         </p>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center gap-3.5 mb-10">
+        {/* Google Material 3 Expressive Pill CTA + Secondary Clean Controls */}
+        <div className="flex flex-wrap items-center gap-3 mb-10 no-print">
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm shadow-md shadow-blue-500/25 transition-all hover:scale-[1.02]"
+            className="expressive-pill inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold shadow-md shadow-zinc-900/10"
           >
             <ArrowDownRight className="w-4 h-4" />
-            <span>{lang === 'zh' ? '查验自研作品展示' : '開発実績を見る'}</span>
+            <span>{lang === 'zh' ? '查验 4 款自研作品' : '開発実績を見る'}</span>
           </a>
 
           <button
+            type="button"
             onClick={onOpenContact}
-            className="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-semibold text-sm transition-all shadow-xs hover:border-zinc-300 dark:hover:border-zinc-700"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-zinc-300/90 bg-white hover:bg-zinc-50 text-zinc-800 text-sm font-semibold transition-colors shadow-2xs cursor-pointer"
           >
-            <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-            <span>{lang === 'zh' ? '联络与完整简历获取说明' : '連絡先・履歴書請求案内'}</span>
+            <ShieldCheck className="w-4 h-4 text-[#34A853]" />
+            <span>{lang === 'zh' ? '获取联络与完整简历' : '連絡・履歴書請求案内'}</span>
           </button>
 
           <button
+            type="button"
             onClick={handlePrint}
-            className="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-semibold text-sm transition-all shadow-xs"
-            title={lang === 'zh' ? '打印或另存为 PDF 展示页' : 'PDFとして印刷・保存'}
+            className="inline-flex items-center gap-1.5 px-4 py-3 rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-700 text-sm font-medium transition-colors cursor-pointer"
+            title={lang === 'zh' ? '打印或另存为白底 PDF' : 'PDF保存'}
           >
             <Printer className="w-4 h-4 text-zinc-500" />
-            <span>{lang === 'zh' ? '打印/导出页面' : 'PDF出力'}</span>
+            <span>{lang === 'zh' ? '导出 PDF' : 'PDF出力'}</span>
           </button>
 
           <a
             href="#interactive-demo"
-            className="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 font-medium text-sm transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-3 text-sm font-medium text-zinc-600 hover:text-zinc-950 transition-colors"
           >
-            <Sparkles className="w-4 h-4 text-amber-500" />
-            <span>{lang === 'zh' ? '试玩日语 Demo' : '語学デモを試す'}</span>
+            <Sparkles className="w-4 h-4 text-[#FBBC05]" />
+            <span>{lang === 'zh' ? '试玩日语 Demo' : '語学デモ'}</span>
           </a>
         </div>
 
-        {/* Quick Highlights Strip */}
-        <div className="pt-6 border-t border-zinc-200/80 dark:border-zinc-800/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
-          <div>
-            <div className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">{lang === 'zh' ? '语言能力' : '語学スキル'}</div>
-            <div className="text-sm font-bold text-zinc-800 dark:text-zinc-200 mt-0.5">{lang === 'zh' ? 'N1 / 商务日语等级' : 'N1・ビジネス日本語'}</div>
+        {/* Tesla Cockpit Precision Telemetry Strip */}
+        <SpotlightCard className="rounded-3xl p-5 sm:p-6">
+          <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-zinc-200/80 relative">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500">
+              SYSTEM TELEMETRY // {lang === 'zh' ? '核心交付与能力指标' : 'CORE METRICS'}
+            </span>
+            <span className="inline-flex items-center gap-1 text-[11px] font-mono text-zinc-500 whitespace-nowrap shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4285F4]" aria-hidden="true" />
+              VERIFIED BUILD
+            </span>
           </div>
-          <div>
-            <div className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">{lang === 'zh' ? '敏捷学习' : '学習スピード'}</div>
-            <div className="text-sm font-bold text-zinc-800 dark:text-zinc-200 mt-0.5">{lang === 'zh' ? '快速跨界自驱进阶' : '短期間での独学習得'}</div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-0 md:divide-x md:divide-zinc-200/80 relative">
+            <div className="md:pr-6">
+              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '端到端交付产品' : '自作アプリ'}</div>
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
+                04 <span className="text-xs font-sans font-medium text-zinc-500">{lang === 'zh' ? '款自研' : 'Apps'}</span>
+              </div>
+            </div>
+
+            <div className="md:px-6">
+              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '离线题库极限压缩' : '超圧縮オフラインDB'}</div>
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
+                1.1 <span className="text-xs font-sans font-medium text-zinc-500">MB / 726题</span>
+              </div>
+            </div>
+
+            <div className="md:px-6">
+              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '商务日语水平' : '日本語実務水準'}</div>
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
+                N1 <span className="text-xs font-sans font-medium text-zinc-500">+ BJT J2</span>
+              </div>
+            </div>
+
+            <div className="md:pl-6">
+              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '自动化音频管线' : 'AI音声文字起こし'}</div>
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
+                300+ <span className="text-xs font-sans font-medium text-zinc-500">hrs</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <div className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">{lang === 'zh' ? '交付应用' : '自作アプリ'}</div>
-            <div className="text-sm font-bold text-zinc-800 dark:text-zinc-200 mt-0.5">{lang === 'zh' ? '4 款自研交付' : '4アプリ開発'}</div>
-          </div>
-          <div>
-            <div className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">{lang === 'zh' ? '工作适应' : '実務適性'}</div>
-            <div className="text-sm font-bold text-zinc-800 dark:text-zinc-200 mt-0.5">{lang === 'zh' ? '跨区域商务差旅就绪' : '出張・機動対応可'}</div>
-          </div>
-        </div>
+        </SpotlightCard>
       </div>
     </section>
   )

@@ -1,118 +1,107 @@
 import React from 'react'
-import { Languages, Moon, Sun, ShieldCheck, Sparkles, Printer, QrCode } from 'lucide-react'
+import { Languages, ShieldCheck, Printer, Command } from 'lucide-react'
 
 interface NavbarProps {
   lang: 'zh' | 'ja'
   setLang: (lang: 'zh' | 'ja') => void
-  theme: 'dark' | 'light'
-  setTheme: (theme: 'dark' | 'light') => void
   onOpenContact: () => void
+  onOpenCommand: () => void
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   lang,
   setLang,
-  theme,
-  setTheme,
-  onOpenContact
+  onOpenContact,
+  onOpenCommand,
 }) => {
   const handlePrint = () => {
     window.print()
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full glass-panel border-b transition-colors duration-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Brand */}
-        <div className="flex items-center gap-3">
-          <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
-              A
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold tracking-tight text-zinc-900 dark:text-zinc-50 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                Alex Lin <span className="text-xs font-normal text-zinc-500 dark:text-zinc-400 ml-1">{lang === 'zh' ? '示例档案' : 'デモ'}</span>
+    <header className="sticky top-0 z-40 w-full px-3 sm:px-6 pt-3 no-print">
+      <div className="max-w-5xl mx-auto liquid-glass rounded-2xl px-4 sm:px-5 h-14 flex items-center justify-between gap-3">
+        {/* Monogram Brand + Google 4-color micro status */}
+        <a href="#" className="flex items-center gap-3 group shrink-0">
+          <div className="w-8 h-8 rounded-xl bg-zinc-900 text-white flex items-center justify-center font-bold text-sm tracking-tight shadow-xs group-hover:scale-105 transition-transform">
+            A
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-bold tracking-tight text-zinc-900 flex items-center gap-1.5">
+              <span>Alex Lin</span>
+              <span className="text-xs font-normal text-zinc-500 hidden sm:inline">
+                {lang === 'zh' ? '· 作品展台' : '· ポートフォリオ'}
               </span>
-              <span className="text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                {lang === 'zh' ? '公开脱敏模式 · 隐私已隐藏' : 'プライバシー保護モード公開中'}
+            </span>
+            <span className="text-[11px] text-zinc-500 flex items-center gap-1.5">
+              <span className="inline-flex items-center gap-0.5" aria-hidden="true">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#4285F4]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#EA4335]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FBBC05]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#34A853]" />
               </span>
-            </div>
-          </a>
-        </div>
+              <span className="hidden xs:inline sm:inline">
+                {lang === 'zh' ? '隐私脱敏展示版' : 'プライバシー保護モード'}
+              </span>
+            </span>
+          </div>
+        </a>
 
-        {/* Navigation Links (Desktop) */}
-        <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-300">
-          <a href="#intent" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+        {/* Desktop Minimal Nav */}
+        <nav className="hidden md:flex items-center gap-5 text-xs font-medium text-zinc-600">
+          <a href="#intent" className="hover:text-zinc-950 transition-colors">
             {lang === 'zh' ? '求职意向' : '希望条件'}
           </a>
-          <a href="#metrics" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            {lang === 'zh' ? '核心能力' : '強みと実績'}
+          <a href="#metrics" className="hover:text-zinc-950 transition-colors">
+            {lang === 'zh' ? '能力矩阵' : 'コア能力'}
           </a>
-          <a href="#timeline" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            {lang === 'zh' ? '成长履历' : '経歴'}
+          <a href="#projects" className="hover:text-zinc-950 transition-colors">
+            {lang === 'zh' ? '自研产品' : '開発実績'}
           </a>
-          <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            {lang === 'zh' ? '自研作品' : '開発実績'}
-          </a>
-          <a href="#interactive-demo" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            {lang === 'zh' ? '日语Demo' : '語学デモ'}
+          <a href="#interactive-demo" className="hover:text-zinc-950 transition-colors">
+            {lang === 'zh' ? '日语 Demo' : '語学デモ'}
           </a>
         </nav>
 
-        {/* Actions: Lang, QR, Print, Theme, Contact */}
-        <div className="flex items-center gap-2">
-          {/* QR Code trigger */}
+        {/* Actions */}
+        <div className="flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
           <button
-            onClick={onOpenContact}
-            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-200 transition-colors shadow-xs"
-            title={lang === 'zh' ? '查看扫码与联络说明' : 'QRコード・連絡ガイド'}
+            type="button"
+            onClick={onOpenCommand}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono font-medium rounded-xl border border-zinc-200/90 bg-white/80 hover:bg-zinc-100 text-zinc-600 transition-colors cursor-pointer"
+            title={lang === 'zh' ? '打开快捷指令台 (Cmd/Ctrl+K)' : 'コマンドメニュー'}
           >
-            <QrCode className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
-            <span className="hidden md:inline">{lang === 'zh' ? '扫码' : 'QR'}</span>
+            <Command className="w-3.5 h-3.5 text-zinc-500" />
+            <span className="hidden sm:inline">⌘K</span>
           </button>
 
-          {/* Print / Save PDF Resume button */}
           <button
+            type="button"
             onClick={handlePrint}
-            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-200 transition-colors shadow-xs"
-            title={lang === 'zh' ? '打印或另存为 PDF 展示页' : 'PDFとして印刷・保存'}
+            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold rounded-xl border border-zinc-200/90 bg-white/80 hover:bg-zinc-100 text-zinc-700 transition-colors cursor-pointer"
+            title={lang === 'zh' ? '打印或保存白底 PDF' : '白地PDF出力'}
           >
-            <Printer className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
-            <span className="hidden md:inline">{lang === 'zh' ? '打印预览' : '印刷/PDF'}</span>
+            <Printer className="w-3.5 h-3.5 text-zinc-500" />
+            <span className="hidden lg:inline">{lang === 'zh' ? '打印' : 'PDF'}</span>
           </button>
 
-          {/* Language Switcher */}
           <button
+            type="button"
             onClick={() => setLang(lang === 'zh' ? 'ja' : 'zh')}
-            className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-200 transition-colors shadow-xs"
-            title={lang === 'zh' ? '切换为日文 (日本語に切替)' : '切换为中文'}
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold rounded-xl border border-zinc-200/90 bg-white/80 hover:bg-zinc-100 text-zinc-700 transition-colors cursor-pointer"
+            title={lang === 'zh' ? '切换为日文' : '切换为中文'}
           >
-            <Languages className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+            <Languages className="w-3.5 h-3.5 text-[#4285F4]" />
             <span>{lang === 'zh' ? '日本語' : '中文'}</span>
           </button>
 
-          {/* Theme Toggle */}
           <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-200 transition-colors shadow-xs"
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-400" />
-            ) : (
-              <Moon className="w-4 h-4 text-zinc-600" />
-            )}
-          </button>
-
-          {/* Contact Button */}
-          <button
+            type="button"
             onClick={onOpenContact}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white transition-all shadow-xs hover:shadow-blue-500/25"
+            className="expressive-pill inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full cursor-pointer shadow-xs"
           >
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>{lang === 'zh' ? '联系说明' : '連絡案内'}</span>
+            <span>{lang === 'zh' ? '联络说明' : '連絡案内'}</span>
           </button>
         </div>
       </div>
