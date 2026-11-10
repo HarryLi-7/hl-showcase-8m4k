@@ -171,19 +171,19 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ lang }) => {
 
               <p className="text-sm text-zinc-600 leading-relaxed mb-6">
                 {lang === 'zh'
-                  ? '具备合规驾照及跨境差旅手续准备（具体证件与签证细节已在公开页面隐藏，面试阶段可完整核验），适应高机动性商务接待、跨城协作及驻外支持任务。'
-                  : '運転免許および海外渡航に必要な諸手続きを完備（具体的な証書情報は非公開とし、面談時に確認可能）。現地訪問や出張を伴うビジネス支援にも柔軟に対応可能です。'}
+                  ? '具备合规驾驶资质，并已持有日美长期出行资质（支持合规短期商务出差，不含任何具体证件与编号信息，面试阶段可核验），适应高机动性商务接待、跨城协作及零等待期海外出差任务。'
+                  : '有効な運転免許に加え、日米両国への長期渡航・短期商用出張に対応できる出行資格を保有（具体的な証書・番号等は公開ページ非掲載、面談時に確認可）。急な海外出張や現地支援にも即応可能です。'}
               </p>
             </div>
 
-            <div className="pt-4 border-t border-zinc-200/70 grid grid-cols-2 gap-2 relative">
+            <div className="pt-4 border-t border-zinc-200/70 grid grid-cols-1 sm:grid-cols-2 gap-2 relative">
               <div className="flex items-center gap-2 text-xs text-zinc-700 font-medium">
                 <ShieldCheck className="w-4 h-4 text-[#34A853] shrink-0" />
                 <span>{lang === 'zh' ? '合法合规驾驶资质' : '正式運転資格あり'}</span>
               </div>
               <div className="flex items-center gap-2 text-xs text-zinc-700 font-medium">
                 <Globe2 className="w-4 h-4 text-[#4285F4] shrink-0" />
-                <span>{lang === 'zh' ? '具备海外差旅条件' : '海外出張即応可'}</span>
+                <span>{lang === 'zh' ? '已持有日美长期出行资质' : '日米長期出張対応資格あり'}</span>
               </div>
             </div>
           </SpotlightCard>
