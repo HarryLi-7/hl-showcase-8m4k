@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowDownRight, ShieldCheck, Printer, Sparkles, Lock } from 'lucide-react'
+import { ArrowDownRight, ShieldCheck, Printer, Sparkles, MapPin } from 'lucide-react'
 import { SpotlightCard } from './SpotlightCard'
 
 interface HeroProps {
@@ -19,11 +19,11 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
         <div className="flex flex-wrap items-center gap-2 mb-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-white border border-zinc-200/90 text-zinc-700 shadow-2xs">
             <span className="w-2 h-2 rounded-full bg-[#34A853]" aria-hidden="true" />
-            <span>{lang === 'zh' ? 'AI 原生工程 · 商务日语复合展台' : 'AIエンジニアリング × ビジネス日本語'}</span>
+            <span>{lang === 'zh' ? 'AI 原生工程 · 商务日语实战' : 'AIエンジニアリング × ビジネス日本語'}</span>
           </div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white border border-zinc-200/90 text-zinc-600 shadow-2xs">
-            <Lock className="w-3 h-3 text-zinc-500" />
-            <span>{lang === 'zh' ? '个人信息已脱敏（仅展实力与作品）' : '個人情報非公開モード公開中'}</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white border border-zinc-200/90 text-zinc-700 shadow-2xs">
+            <MapPin className="w-3 h-3 text-[#4285F4]" />
+            <span>{lang === 'zh' ? '广州 · 华南师范大学本科 · 即日可到岗' : '広州 · 華南師範大学卒 · 即時入社可'}</span>
           </div>
         </div>
 
@@ -44,12 +44,12 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
             </>
           ) : (
             <>
-              エンジニアリングの確実性で、
+              エンジニアの確実性で、
               <br />
               <span className="underline decoration-zinc-300 decoration-2 underline-offset-4 sm:underline-offset-8">
-                AIプロダクト
+                AI 製品
               </span>
-              と日系実務を駆動する。
+              と日系実務を駆動。
             </>
           )}
         </h1>
@@ -58,17 +58,19 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
         <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-3xl mb-8">
           {lang === 'zh' ? (
             <>
-              你好，我是 <strong className="text-zinc-950 font-semibold">Alex Lin（匿名示例档案）</strong>。
-              本科学历背景，具备高阶商务日语读写与沟通实战力，并借助现代 AI 工程工作流端到端独立落地{' '}
+              你好，我是 <strong className="text-zinc-950 font-semibold">Harry L.</strong>。
+              华南师范大学本科毕业，持有 <strong className="text-zinc-950 font-semibold">JLPT N1（108分）与 BJT J2（448分）</strong>，
+              并借助现代 AI 工程工作流端到端独立落地{' '}
               <strong className="text-zinc-950 font-semibold">4 款软件应用</strong>（含原生微信小程序、桌面端、长音频转录管线及 NLP Web 系统）。
-              个人实名、电话、微信及证件原件已在此公开页隐去，正式沟通后随时核验。
+              现居广州，持有内地 C1 / 香港双驾照及日美长期商务出行签证。
             </>
           ) : (
             <>
-              はじめまして、<strong className="text-zinc-950 font-semibold">Alex Lin（匿名公開プロフィール）</strong>と申します。
-              学士課程修了、高度なビジネス日本語運用力を備え、AI開発ワークフローを駆使して{' '}
+              はじめまして、<strong className="text-zinc-950 font-semibold">Harry L.</strong> と申します。
+              華南師範大学（学士）修了、<strong className="text-zinc-950 font-semibold">JLPT N1（108点）・BJT J2（448点）</strong>を取得し、
+              AI開発ワークフローを駆使して{' '}
               <strong className="text-zinc-950 font-semibold">4本のソフトウェア</strong>（WeChatミニプログラム・デスクトップ・音声パイプライン・Webアプリ）を独力実装いたしました。
-              個人情報・証明書原本は非公開とし、面談時にご提示いたします。
+              広州拠点・大陸/香港両運転免許および日米長期商用ビザを保有しております。
             </>
           )}
         </p>
@@ -89,7 +91,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
             className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-zinc-300/90 bg-white hover:bg-zinc-50 text-zinc-800 text-sm font-semibold transition-colors shadow-2xs cursor-pointer"
           >
             <ShieldCheck className="w-4 h-4 text-[#34A853]" />
-            <span>{lang === 'zh' ? '获取联络与完整简历' : '連絡・履歴書請求案内'}</span>
+            <span>{lang === 'zh' ? '联络方式与证件核验' : '連絡先・証明書案内'}</span>
           </button>
 
           <button
@@ -134,14 +136,14 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
             <div className="md:px-6">
               <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '离线题库极限压缩' : '超圧縮オフラインDB'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                1.1 <span className="text-xs font-sans font-medium text-zinc-500">MB / 726题</span>
+                1.1 <span className="text-xs font-sans font-medium text-zinc-500">{lang === 'zh' ? 'MB / 726题' : 'MB / 726問'}</span>
               </div>
             </div>
 
             <div className="md:px-6">
-              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '商务日语水平' : '日本語実務水準'}</div>
+              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '商务日语双证成绩' : '日本語実務スコア'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                N1 <span className="text-xs font-sans font-medium text-zinc-500">+ BJT J2</span>
+                N1 <span className="text-xs font-sans font-medium text-zinc-500">{lang === 'zh' ? '108分 · BJT J2 (448)' : '108点 · BJT J2 (448)'}</span>
               </div>
             </div>
 

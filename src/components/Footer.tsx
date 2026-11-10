@@ -17,15 +17,15 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenContact }) => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8">
           <div>
             <div className="text-base font-bold text-zinc-950 flex items-center gap-2">
-              <span>Alex Lin</span>
+              <span>Harry L.</span>
               <span className="text-xs font-normal text-zinc-500">
-                {lang === 'zh' ? '· 匿名示例档案' : '· 匿名ポートフォリオ'}
+                {lang === 'zh' ? '· 广州 · AI 工程与商务日语' : '· 広州 · ポートフォリオ'}
               </span>
             </div>
             <div className="text-xs text-zinc-500 mt-1">
               {lang === 'zh'
-                ? 'AI 原生工程 · 商务日语作品展台（白底精密设计版 · 已启用隐私脱敏）'
-                : 'AIエンジニアリング・ビジネス日本語 作品展示サイト'}
+                ? '华南师范大学本科 · JLPT N1 (108分) · BJT J2 (448分) · 日美商务出行就绪'
+                : '華南師範大学卒 · JLPT N1 (108点) · BJT J2 (448点) · 日米長期出張対応可'}
             </div>
           </div>
 
@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenContact }) => {
               className="expressive-pill px-4 py-2 text-xs font-semibold rounded-full flex items-center gap-1.5 cursor-pointer"
             >
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>{lang === 'zh' ? '联络与隐私说明' : '連絡・プライバシー案内'}</span>
+              <span>{lang === 'zh' ? '联络与对接' : '連絡・案内'}</span>
             </button>
             <button
               type="button"
@@ -50,7 +50,7 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenContact }) => {
         </div>
 
         <div className="pt-6 border-t border-zinc-200/70 text-center text-[11px] font-mono text-zinc-500">
-          © {new Date().getFullYear()} Alex Lin Portfolio Demo · Privacy-Protected Showcase
+          © {new Date().getFullYear()} Harry L. · AI Engineering &amp; Business Japanese Portfolio
         </div>
       </div>
     </footer>

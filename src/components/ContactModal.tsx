@@ -86,16 +86,16 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             <ShieldCheck className="w-5 h-5 text-[#34A853]" />
           </div>
           <h3 id="contact-dialog-title" className="text-xl font-bold text-zinc-950 tracking-tight">
-            {lang === 'zh' ? '联络方式与隐私保护说明' : 'ご連絡方法とプライバシー保護について'}
+            {lang === 'zh' ? '联络沟通与身份核验' : 'ご連絡・各種確認のご案内'}
           </h3>
           <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
             {lang === 'zh'
-              ? '当前公开网页已撤除个人实名、手机号、微信号、个人邮箱及证件原图，以防止公开抓取。'
-              : '本ページは公開URLからの情報収集を防ぐため、実名・電話番号・WeChat・証明書原本を非公開としております。'}
+              ? '本页面已公开展示学历、JLPT N1/BJT 成绩与打码版 N1 成绩单；为防爬虫骚扰，手机号、个人微信、邮箱及证件号仅于面试沟通阶段提供。'
+              : '学歴・語学スコア・マスキング済N1証明書は公開済みです。スパム対策のため、連絡先・個人番号のみ選考連絡時にご案内いたします。'}
           </p>
         </div>
 
-        {/* Masked Contact Rows */}
+        {/* Contact & Verification Rows */}
         <div className="space-y-2.5 mb-5">
           <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
             <div className="w-9 h-9 rounded-xl bg-white border border-zinc-200 text-[#4285F4] flex items-center justify-center shrink-0">
@@ -104,7 +104,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             <div>
               <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '手机号码' : '電話番号'}</div>
               <div className="text-sm font-semibold text-zinc-800">
-                {lang === 'zh' ? '已隐藏（招聘平台/私信沟通后提供）' : '非公開（選考連絡後に共有）'}
+                {lang === 'zh' ? '通过招聘平台或私信对接后提供' : '求人媒体・メッセージ経由でご案内'}
               </div>
             </div>
           </div>
@@ -114,9 +114,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <MessageSquare className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '微信联络' : 'WeChat'}</div>
+              <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '微信联系' : 'WeChat'}</div>
               <div className="text-sm font-semibold text-zinc-800">
-                {lang === 'zh' ? '已撤除二维码及账号，请先私信沟通' : 'QR・ID非掲載（別途ご案内）'}
+                {lang === 'zh' ? '防爬虫保护中 · 沟通过程中交换对接' : 'スパム防止のため個別にご案内'}
               </div>
             </div>
           </div>
@@ -126,9 +126,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <Mail className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '电子邮箱' : 'メールアドレス'}</div>
+              <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '完整简历与原件核验' : '履歴書・原本確認'}</div>
               <div className="text-sm font-semibold text-zinc-800">
-                {lang === 'zh' ? '正式完整版简历及证书附于沟通附件' : '完全版履歴書・証明書は個別送付'}
+                {lang === 'zh' ? '可随时提供完整简历、毕业证及驾照/日美签证原件核验' : '完全版履歴書・卒業証書・免許/ビザ原本提示可'}
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-200/80 mb-4">
           <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
             <div className="p-2 rounded-xl bg-white shadow-2xs shrink-0 border border-zinc-200">
-              <img src="./qrcode.png" alt="作品集网页二维码" className="w-24 h-24 object-contain" />
+              <img src="./qrcode.png" alt="作品集网页二维码" width={96} height={96} className="w-24 h-24 object-contain" />
             </div>
             <div>
               <div className="text-xs font-bold text-zinc-950 mb-1 flex items-center justify-center sm:justify-start gap-1.5">
@@ -186,8 +186,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           <MapPin className="w-4 h-4 text-[#4285F4] shrink-0" />
           <span>
             {lang === 'zh'
-              ? '常驻区域：华南沿海城市（详细面试地址及到岗安排将在沟通过程中确认）'
-              : '拠点エリア：華南エリア（面談詳細・条件は個別調整）'}
+              ? '常驻城市：广州（中心城区地铁 45 分钟通勤圈 · 内地C1/香港双驾照 · 日5年/美10年商务签）'
+              : '拠点エリア：中国・広州（地下鉄45分圏内 · 中港両運転免許 · 日5年/米10年ビザ完備）'}
           </span>
         </div>
       </div>

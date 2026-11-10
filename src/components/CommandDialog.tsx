@@ -183,7 +183,7 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>{lang === 'zh' ? '查看隐私保护与沟通联络方式' : 'プライバシー保護・連絡方法を見る'}</span>
+            <span>{lang === 'zh' ? '查看联络方式与作品集二维码' : '連絡先・QRコードを見る'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">QR</span>
         </button>

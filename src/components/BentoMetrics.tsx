@@ -22,8 +22,8 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ lang }) => {
           </div>
           <p className="text-xs sm:text-sm text-zinc-500 max-w-sm">
             {lang === 'zh'
-              ? '聚焦实际工具产出与系统思考力，个人身份证明与证件编号仅在正式面试环节提供核验。'
-              : '個人情報は非公開としつつ、自作アプリケーションと技術設計力を中心にご紹介します。'}
+              ? '聚焦 AI 工程交付实效、经官方认证的跨语种能力与跨区域商务机动性，个人证件编号等隐私字段已做脱敏处理。'
+              : '自作AIアプリケーション、公的日本語資格スコア、海外出張への機動力を中心にご紹介します（個人番号等のみ非公開）。'}
           </p>
         </div>
 
@@ -41,36 +41,36 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ lang }) => {
                     {lang === 'zh' ? '语言与涉外商务' : '語学・ビジネス実践'}
                   </span>
                 </div>
-                <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-100 text-zinc-600 border border-zinc-200/80">
-                  {lang === 'zh' ? '原件私下备查' : '原本提示可'}
+                <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200/80">
+                  {lang === 'zh' ? '成绩单公开可验' : '証明書画像公開中'}
                 </span>
               </div>
 
               <div className="flex flex-wrap items-baseline gap-2.5 mb-2">
                 <span className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 font-mono">
-                  N1 <span className="text-zinc-500 font-normal">&amp;</span> BJT
+                  N1 <span className="text-zinc-500 font-normal">&amp;</span> BJT J2
                 </span>
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200/80">
-                  {lang === 'zh' ? '商务日语认证等级' : 'ビジネス日本語認定'}
+                  {lang === 'zh' ? '108分 / 448分 · CEFR B2' : '108点 / 448点 · CEFR B2'}
                 </span>
               </div>
 
               <p className="text-sm text-zinc-600 leading-relaxed mb-5">
                 {lang === 'zh'
-                  ? '具备高阶日语阅读、听力与商务书面表达能力（对应官方高阶语言认证水平，具体成绩单与编号已在公开版隐藏）。可独立研读日文业务资料、撰写敬语邮件并配合跨国业务推进。'
-                  : 'ビジネスレベルの日本語読解・聴解・文書作成能力を保持（成績証書の原本・番号はプライバシー保護のため非公開）。日系業務ドキュメントの読解やメール対応、折衝業務を円滑に遂行できます。'}
+                  ? '2024 年 4 月起从零高密度突破，先后拿下 JLPT N1（108分：语言知识 30 · 阅读 41 · 听力 37 · CEFR B2）与 BJT 商务日语 J2 级（448分），兼具母语级粤语与流利普通话。可独立研读日文业务资料、撰写敬语邮件并配合跨国业务推进。'
+                  : '2024年4月よりゼロから独学し、JLPT N1（108点：知識30・読解41・聴解37・CEFR B2）および BJT J2（448点）を取得。ネイティブレベルの広東語と流暢な標準中国語も備え、日系業務ドキュメント読解・敬語メール対応を円滑に遂行できます。'}
               </p>
             </div>
 
             <div className="pt-4 border-t border-zinc-200/70 flex flex-wrap gap-1.5 relative">
               <span className="text-xs font-medium px-2.5 py-1 rounded-lg bg-zinc-100/90 text-zinc-700 border border-zinc-200/60">
-                日语商务读写与会话
+                {lang === 'zh' ? 'JLPT N1 (108分) · BJT J2 (448分)' : 'JLPT N1 (108点) · BJT J2 (448点)'}
               </span>
               <span className="text-xs font-medium px-2.5 py-1 rounded-lg bg-zinc-100/90 text-zinc-700 border border-zinc-200/60">
-                双语及方言流利
+                {lang === 'zh' ? '粤语母语 · 流利普通话' : '広東語ネイティブ・北京語流暢'}
               </span>
               <span className="text-xs font-medium px-2.5 py-1 rounded-lg bg-zinc-100/90 text-zinc-700 border border-zinc-200/60">
-                涉外商务文书
+                {lang === 'zh' ? '日文敬语与商务文书' : 'ビジネス敬語・文書作成'}
               </span>
             </div>
           </SpotlightCard>
@@ -165,25 +165,25 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ lang }) => {
 
               <div className="flex items-baseline gap-2 mb-2">
                 <span className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-950">
-                  {lang === 'zh' ? '跨区域出差与合规出行就绪' : '国内外出張・柔軟な業務連携'}
+                  {lang === 'zh' ? '内地/香港双驾照 · 日美长期商务签' : '中港両運転免許 · 日米長期ビザ'}
                 </span>
               </div>
 
               <p className="text-sm text-zinc-600 leading-relaxed mb-6">
                 {lang === 'zh'
-                  ? '具备合规驾驶资质，并已持有日美长期出行资质（支持合规短期商务出差，不含任何具体证件与编号信息，面试阶段可核验），适应高机动性商务接待、跨城协作及零等待期海外出差任务。'
-                  : '有効な運転免許に加え、日米両国への長期渡航・短期商用出張に対応できる出行資格を保有（具体的な証書・番号等は公開ページ非掲載、面談時に確認可）。急な海外出張や現地支援にも即応可能です。'}
+                  ? '已持有中国内地 C1 驾照与香港正式驾照，熟悉多区域安全驾驶规范；同时持有日本 5 年多次签证与美国 10 年 B1/B2 签证，均支持合规短期商务出差、会议与客户拜访（仅具体证件编号保留面试核验），跨城协作与海外差旅零等待期。'
+                  : '中国本土C1免許および香港正式運転免許を保有し、広域の移動・接待に柔軟対応。さらに日本5年数次ビザ・米国10年B1/B2ビザを保有しており（証書番号のみ非公開）、短期商用出張・会議・現地訪問へ待機期間なく即応可能です。'}
               </p>
             </div>
 
             <div className="pt-4 border-t border-zinc-200/70 grid grid-cols-1 sm:grid-cols-2 gap-2 relative">
               <div className="flex items-center gap-2 text-xs text-zinc-700 font-medium">
                 <ShieldCheck className="w-4 h-4 text-[#34A853] shrink-0" />
-                <span>{lang === 'zh' ? '合法合规驾驶资质' : '正式運転資格あり'}</span>
+                <span>{lang === 'zh' ? '中国内地 C1 驾照 + 香港正式驾照' : '中国本土C1 ＋ 香港正式運転免許'}</span>
               </div>
               <div className="flex items-center gap-2 text-xs text-zinc-700 font-medium">
                 <Globe2 className="w-4 h-4 text-[#4285F4] shrink-0" />
-                <span>{lang === 'zh' ? '已持有日美长期出行资质' : '日米長期出張対応資格あり'}</span>
+                <span>{lang === 'zh' ? '日本 5 年多次 + 美国 10 年 B1/B2 签' : '日本5年数次 ＋ 米国10年B1/B2ビザ'}</span>
               </div>
             </div>
           </SpotlightCard>

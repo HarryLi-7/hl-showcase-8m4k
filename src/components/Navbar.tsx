@@ -24,11 +24,11 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Monogram Brand + Google 4-color micro status */}
         <a href="#" className="flex items-center gap-3 group shrink-0">
           <div className="w-8 h-8 rounded-xl bg-zinc-900 text-white flex items-center justify-center font-bold text-sm tracking-tight shadow-xs group-hover:scale-105 transition-transform">
-            A
+            H
           </div>
           <div className="flex flex-col">
             <span className="text-sm font-bold tracking-tight text-zinc-900 flex items-center gap-1.5">
-              <span>Alex Lin</span>
+              <span>Harry L.</span>
               <span className="text-xs font-normal text-zinc-500 hidden sm:inline">
                 {lang === 'zh' ? '· 作品展台' : '· ポートフォリオ'}
               </span>
@@ -40,8 +40,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span className="w-1.5 h-1.5 rounded-full bg-[#FBBC05]" />
                 <span className="w-1.5 h-1.5 rounded-full bg-[#34A853]" />
               </span>
-              <span className="hidden xs:inline sm:inline">
-                {lang === 'zh' ? '隐私脱敏展示版' : 'プライバシー保護モード'}
+              <span className="hidden sm:inline">
+                {lang === 'zh' ? '广州 · AI 工程与商务日语' : '広州 · AI開発とビジネス日本語'}
               </span>
             </span>
           </div>
@@ -101,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="expressive-pill inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full cursor-pointer shadow-xs"
           >
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>{lang === 'zh' ? '联络说明' : '連絡案内'}</span>
+            <span>{lang === 'zh' ? '联络与核验' : '連絡・案内'}</span>
           </button>
         </div>
       </div>

@@ -59,7 +59,7 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({
           className="expressive-pill flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold cursor-pointer shrink-0"
         >
           <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
-          <span>{lang === 'zh' ? '联系说明' : '連絡案内'}</span>
+          <span>{lang === 'zh' ? '联系我' : '連絡先'}</span>
         </button>
       </div>
     </aside>
