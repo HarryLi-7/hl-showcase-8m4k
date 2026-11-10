@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
               你好，我是 <strong className="text-zinc-950 font-semibold">Harry L.</strong>。
               华南师范大学本科毕业，持有 <strong className="text-zinc-950 font-semibold">JLPT N1（108分）与 BJT J2（448分）</strong>；
               日常深度使用 <strong className="text-zinc-950 font-semibold">Codex · Antigravity · DeepSeek Harness</strong> 驱动研发，端到端独立落地以{' '}
-              <strong className="text-zinc-950 font-semibold">JLPT N1 日语学习全栈 Web 系统</strong>为核心主项目的自研工具矩阵（含未公开发布的同源微信小程序复刻版、ClipNest 桌面端及长音频转录管线）。
+              <strong className="text-zinc-950 font-semibold">JLPT N1 日语学习全栈 Web 系统</strong>为核心主项目，延伸出 ClipNest 与 TranscribeHub（macOS SwiftUI + Android 双端原生）、DeepSeek Harness 插件/本地 Skills 基建、Chrome MV3 硬解效率扩展及未公开发布的同源小程序复刻版。
               现居广州，持有内地 C1 / 香港双驾照及日美长期商务出行签证。
             </>
           ) : (
@@ -69,7 +69,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
               はじめまして、<strong className="text-zinc-950 font-semibold">Harry L.</strong> と申します。
               華南師範大学（学士）修了、<strong className="text-zinc-950 font-semibold">JLPT N1（108点）・BJT J2（448点）</strong>を取得し、
               普段より <strong className="text-zinc-950 font-semibold">Codex · Antigravity · DeepSeek Harness</strong> を開発基盤に活用。
-              <strong className="text-zinc-950 font-semibold">JLPT N1 日本語学習フルスタック Web システム</strong>を主力プロジェクトとして、同源の未公開ミニプログラム複製版・ClipNest デスクトップ・音声パイプラインまで独力実装いたしました。
+              <strong className="text-zinc-950 font-semibold">JLPT N1 日本語学習フルスタック Web システム</strong>を主力プロジェクトとして、macOS SwiftUI・Android 両OSネイティブ製品（ClipNest / TranscribeHub）、DSHプラグイン・自作Skills基盤、Chrome MV3省電力拡張および非公開のミニプログラム複製版まで独力実装いたしました。
               広州拠点・大陸/香港両運転免許および日米長期商用ビザを保有しております。
             </>
           )}
@@ -127,9 +127,9 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-0 md:divide-x md:divide-zinc-200/80 relative">
             <div className="md:pr-6">
-              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '核心主项目 + 衍生矩阵' : '主力 Web＋ツール群'}</div>
+              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '核心主项目 + 工程矩阵' : '主力 Web＋ツール群'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                Web <span className="text-xs font-sans font-medium text-zinc-500">{lang === 'zh' ? '为主 + 3 项衍生/工具' : '主力＋3ツール'}</span>
+                Web <span className="text-xs font-sans font-medium text-zinc-500 whitespace-nowrap">{lang === 'zh' ? '主打 + 5 项矩阵交付' : '主力＋5領域群'}</span>
               </div>
             </div>
 
@@ -143,14 +143,14 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
             <div className="md:px-6">
               <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '商务日语双证成绩' : '日本語実務スコア'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                N1 <span className="text-xs font-sans font-medium text-zinc-500">{lang === 'zh' ? '108分 · BJT J2 (448)' : '108点 · BJT J2 (448)'}</span>
+                N1 <span className="text-xs font-sans font-medium text-zinc-500 whitespace-nowrap">{lang === 'zh' ? '108分 · BJT J2 (448)' : '108点 · BJT J2 (448)'}</span>
               </div>
             </div>
 
             <div className="md:pl-6">
-              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '自动化音频管线' : 'AI音声文字起こし'}</div>
+              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '跨端原生与插件覆盖' : '両OSネイティブ＆拡張'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                300+ <span className="text-xs font-sans font-medium text-zinc-500">hrs</span>
+                Dual <span className="text-xs font-sans font-medium text-zinc-500 whitespace-nowrap">macOS · Android · MV3</span>
               </div>
             </div>
           </div>

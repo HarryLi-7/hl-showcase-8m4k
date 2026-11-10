@@ -100,8 +100,8 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ lang }) => {
 
               <p className="text-sm text-zinc-600 leading-relaxed mb-4">
                 {lang === 'zh'
-                  ? '日常主力使用 Codex、Antigravity 与 DeepSeek Harness 驱动研发，独立落地「JLPT N1 日语学习全栈 Web 系统」（核心主力，含 Kuromoji 拆解与 ETag 云端并发同步）、「片巢 ClipNest」桌面端、「转录中心」音频管线及未公开发布的同源小程序复刻版。'
-                  : 'Codex · Antigravity · DeepSeek Harness を日常の開発基盤として活用し、主力 Web システム（Kuromoji解析・ETag同期）、「ClipNest」、音声基盤、さらに主Web版ロジックを複製した非公開ミニプログラムまで一貫構築。'}
+                  ? '日常主力使用 Codex、Antigravity 与 DeepSeek Harness 驱动研发，独立交付核心主项目「JLPT N1 日语学习全栈 Web 系统」，并落地「片巢 ClipNest」&「TranscribeHub 转录中心」macOS SwiftUI + Android 双端原生 App、DSH 插件生态、Chrome MV3 媒体省电/画质扩展及未公开发布的同源小程序复刻版。'
+                  : 'Codex · Antigravity · DeepSeek Harness を開発基盤に、主力 Web システムに加え「ClipNest」「TranscribeHub」の macOS SwiftUI・Android 両OSネイティブ、DSHプラグイン、Chrome MV3 拡張及び非公開ミニプログラム複製版まで一貫構築。'}
               </p>
             </div>
 
@@ -118,7 +118,7 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ lang }) => {
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs text-zinc-500 font-mono">
-                <span>Next.js · Electron · Python</span>
+                <span>Next.js · SwiftUI · Kotlin · MV3</span>
                 <span className="text-zinc-900 font-sans font-semibold">{lang === 'zh' ? '下方查验' : '下記で公開'} ↓</span>
               </div>
             </div>

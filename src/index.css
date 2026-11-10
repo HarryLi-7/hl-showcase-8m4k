@@ -168,6 +168,36 @@ dialog.command-dialog::backdrop {
   backdrop-filter: blur(8px);
 }
 
+/* Balanced wrapping for tech-stack tag clouds (progressive fallback to wrap) */
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: balance;
+}
+
+/* Single-row filter bar: stays single-row on desktop and horizontal-scrolls cleanly on tight viewports */
+.filter-scroller {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: inline proximity;
+  scroll-padding-inline: 0.5rem;
+}
+
+.filter-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Native disclosure details summary marker cleanup & forced-colors guard */
+details.archive-disclosure > summary {
+  list-style: none;
+}
+
+details.archive-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
 /* Equalizer waveform bars for Japanese demo */
 @keyframes wavePulse {
   0%, 100% {

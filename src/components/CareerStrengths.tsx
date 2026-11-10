@@ -30,8 +30,8 @@ export const CareerStrengths: React.FC<CareerStrengthsProps> = ({ lang }) => {
               </h3>
               <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
                 {lang === 'zh'
-                  ? '日常高频实战 Codex、Antigravity 与 DeepSeek Harness，不只是简单对话，更能通过 Agent 工具链与脚本工程把重复业务流、海量音视频或表格数据转化为自动化方案，直接为团队降本增效。'
-                  : 'Codex · Antigravity · DeepSeek Harness を日常的に実戦投入し、単なるチャット利用を超えたワークフロー構築力で定型業務や長尺コンテンツ整理を自動化。チーム全体の生産性を引き上げます。'}
+                  ? '日常高频实战 Codex、Antigravity 与 DeepSeek Harness，不只是简单对话，更能通过自研 Agent Skills、DSH 插件与多端客户端工程（Web / macOS SwiftUI / Android Kotlin / Chrome MV3）把复杂业务流程直接转化为可复用工具方案。'
+                  : 'Codex · Antigravity · DeepSeek Harness を実戦投入し、単なるチャット活用を超えた自作Skills・DSHプラグイン・マルチプラットフォーム実装（Web / SwiftUI / Kotlin / MV3）により、業務課題を自動化ソリューションへ落とし込みます。'}
               </p>
             </div>
             <div className="pt-3 border-t border-zinc-200/70 text-xs text-zinc-800 font-semibold relative">
