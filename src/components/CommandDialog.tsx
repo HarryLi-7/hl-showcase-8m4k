@@ -122,7 +122,7 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
             <Cpu className="w-4 h-4 text-zinc-500" />
-            <span>{lang === 'zh' ? '4 款自研软件交付成果' : '開発実績（4アプリ）'}</span>
+            <span>{lang === 'zh' ? '主打日语 Web 系统与多端成果' : '主力 Web ＆自研プロダクト'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">#projects</span>
         </button>

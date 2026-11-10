@@ -3,9 +3,14 @@ import React, { useEffect, useRef } from 'react'
 interface SpotlightCardProps {
   children: React.ReactNode
   className?: string
+  as?: 'div' | 'article'
 }
 
-export const SpotlightCard: React.FC<SpotlightCardProps> = ({ children, className = '' }) => {
+export const SpotlightCard: React.FC<SpotlightCardProps> = ({
+  children,
+  className = '',
+  as: Tag = 'div',
+}) => {
   const cardRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -34,9 +39,9 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({ children, classNam
   }, [])
 
   return (
-    <div ref={cardRef} className={`bento-card ${className}`}>
+    <Tag ref={cardRef} className={`bento-card ${className}`}>
       <div className="spotlight-layer" aria-hidden="true" />
       {children}
-    </div>
+    </Tag>
   )
 }

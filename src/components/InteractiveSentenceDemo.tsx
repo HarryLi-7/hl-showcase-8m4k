@@ -60,8 +60,8 @@ export const InteractiveSentenceDemo: React.FC<InteractiveSentenceDemoProps> = (
           </div>
           <p className="text-xs sm:text-sm text-zinc-500 max-w-sm">
             {lang === 'zh'
-              ? '提取自本人自研「JLPT 句型特训系统」的核心模块，模拟硬件中控台手感进行形态素拆解与语音朗读。'
-              : '独自開発「JLPT学習システム」のコア機能を本ポートフォリオ内に直接移植。リアルタイム音声・構文検証が可能です。'}
+              ? '提取自本人核心主打项目「JLPT N1 日语学习全栈 Web 系统」的形态素拆解与语音朗读模块。'
+              : '主力Webプロジェクト「JLPT N1 学習システム」から形態素解析・音声検証機能をポートフォリオ内に直接移植。'}
           </p>
         </div>
 

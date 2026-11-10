@@ -60,16 +60,15 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
             <>
               你好，我是 <strong className="text-zinc-950 font-semibold">Harry L.</strong>。
               华南师范大学本科毕业，持有 <strong className="text-zinc-950 font-semibold">JLPT N1（108分）与 BJT J2（448分）</strong>，
-              并借助现代 AI 工程工作流端到端独立落地{' '}
-              <strong className="text-zinc-950 font-semibold">4 款软件应用</strong>（含原生微信小程序、桌面端、长音频转录管线及 NLP Web 系统）。
+              并借助现代 AI 工程工作流端到端独立落地以{' '}
+              <strong className="text-zinc-950 font-semibold">JLPT N1 日语学习全栈 Web 系统</strong>为核心主项目的自研工具矩阵（含未公开发布的同源微信小程序复刻版、ClipNest 桌面端及长音频转录管线）。
               现居广州，持有内地 C1 / 香港双驾照及日美长期商务出行签证。
             </>
           ) : (
             <>
               はじめまして、<strong className="text-zinc-950 font-semibold">Harry L.</strong> と申します。
               華南師範大学（学士）修了、<strong className="text-zinc-950 font-semibold">JLPT N1（108点）・BJT J2（448点）</strong>を取得し、
-              AI開発ワークフローを駆使して{' '}
-              <strong className="text-zinc-950 font-semibold">4本のソフトウェア</strong>（WeChatミニプログラム・デスクトップ・音声パイプライン・Webアプリ）を独力実装いたしました。
+              <strong className="text-zinc-950 font-semibold">JLPT N1 日本語学習フルスタック Web システム</strong>を主力プロジェクトとして、同源の未公開ミニプログラム複製版・ClipNest デスクトップ・音声パイプラインまで独力実装いたしました。
               広州拠点・大陸/香港両運転免許および日米長期商用ビザを保有しております。
             </>
           )}
@@ -82,7 +81,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
             className="expressive-pill inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold shadow-md shadow-zinc-900/10"
           >
             <ArrowDownRight className="w-4 h-4" />
-            <span>{lang === 'zh' ? '查验 4 款自研作品' : '開発実績を見る'}</span>
+            <span>{lang === 'zh' ? '查看主打 Web 与自研作品' : '主力 Web・開発実績を見る'}</span>
           </a>
 
           <button
@@ -127,16 +126,16 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-0 md:divide-x md:divide-zinc-200/80 relative">
             <div className="md:pr-6">
-              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '端到端交付产品' : '自作アプリ'}</div>
+              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '核心主项目 + 衍生矩阵' : '主力 Web＋ツール群'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                04 <span className="text-xs font-sans font-medium text-zinc-500">{lang === 'zh' ? '款自研' : 'Apps'}</span>
+                Web <span className="text-xs font-sans font-medium text-zinc-500">{lang === 'zh' ? '为主 + 3 项衍生/工具' : '主力＋3ツール'}</span>
               </div>
             </div>
 
             <div className="md:px-6">
-              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '离线题库极限压缩' : '超圧縮オフラインDB'}</div>
+              <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '主打 Web 日语题库' : '主力 Web 問題DB'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                1.1 <span className="text-xs font-sans font-medium text-zinc-500">{lang === 'zh' ? 'MB / 726题' : 'MB / 726問'}</span>
+                946 <span className="text-xs font-sans font-medium text-zinc-500 whitespace-nowrap">{lang === 'zh' ? '题 · 726句+220词' : '問 · 726文+220語'}</span>
               </div>
             </div>
 

@@ -94,19 +94,19 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ lang }) => {
 
               <div className="flex items-baseline gap-2 mb-2">
                 <span className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 font-mono tabular-nums">
-                  04 <span className="text-sm font-sans font-semibold text-zinc-500">{lang === 'zh' ? '款独立自研产品' : 'プロダクト開発実績'}</span>
+                  Web <span className="text-sm font-sans font-semibold text-zinc-500">{lang === 'zh' ? '为核心主项目 · 多端延展' : '主力＋マルチ連携'}</span>
                 </span>
               </div>
 
               <p className="text-sm text-zinc-600 leading-relaxed mb-5">
                 {lang === 'zh'
-                  ? '深度结合 AI 工程工作流与现代开发技术栈，独立完成「JLPT N1 文法随身练」原生微信小程序、「片巢 ClipNest」桌面应用、「转录中心」音频管线与「JLPT 句型系统」，具备从痛点梳理到可用工具交付的闭环能力。'
-                  : '先端AI開発ワークフローを駆使し、WeChatミニプログラム、デスクトップアプリ「ClipNest」、音声パイプライン、Web学習システムを企画から実装まで一貫して構築。'}
+                  ? '以独立研发的「JLPT N1 日语学习全栈 Web 系统」为核心主力（集成 Kuromoji 形态素拆解与 ETag 云端并发同步），同步延展出「片巢 ClipNest」桌面客户端、「转录中心」音频管线，并基于该主 Web 端逻辑1:1复刻了一套仅供个人离线自用、未公开发布的微信小程序版本。'
+                  : '「JLPT N1 日本語学習フルスタック Web システム」（Kuromoji解析・ETagクラウド同期搭載）を主力プロダクトとし、デスクトップ「ClipNest」、音声基盤に加え、主Web版のロジックを再現した非公開・個人用のWeChatミニプログラム複製版も構築しています。'}
               </p>
             </div>
 
             <div className="pt-4 border-t border-zinc-200/70 flex items-center justify-between text-xs text-zinc-500 font-mono relative">
-              <span>WeChat · Electron · Next.js · Python</span>
+              <span>Next.js · Kuromoji · Electron · Python</span>
               <span className="text-zinc-900 font-sans font-semibold">{lang === 'zh' ? '下方查验' : '下記で公開'} ↓</span>
             </div>
           </SpotlightCard>

@@ -20,13 +20,13 @@ export const Timeline: React.FC<TimelineProps> = ({ lang }) => {
     },
     {
       period: lang === 'zh' ? '阶段二 · 工程落地' : 'Phase 02 · 開発実装',
-      title: lang === 'zh' ? 'AI 原生工程研发 · 独立自研 4 款产品闭环交付' : 'AIネイティブ開発・4本の独自プロダクト開発と実装',
+      title: lang === 'zh' ? 'AI 原生工程研发 · 主力日语 Web 系统与多工具落地' : 'AIネイティブ開発・主力日本語 Web ＆各種ツール実装',
       badge: lang === 'zh' ? '工程交付' : '技術実装',
       icon: <Cpu className="w-4 h-4 text-[#4285F4]" />,
       desc:
         lang === 'zh'
-          ? '结合 AI 辅助编程与现代工程工具链，独立完成「JLPT N1 文法随身练」原生微信小程序、「片巢 ClipNest」桌面端、「TranscribeHub 转录中心」长音频管线、以及「JLPT 句型特训器」全栈 Web 系统的研发与部署，具备将业务痛点转化为软件效率工具的能力。'
-          : 'AI開発ツールとモダン技術基盤を組み合わせ、WeChatミニプログラム「JLPT文法マスター」、デスクトップアプリ「ClipNest」、音声文字起こしパイプライン「TranscribeHub」、Web学習アプリを企画・開発・実装。業務課題をソフトウェアで解決する推進力を実証。'
+          ? '以 Next.js + Kuromoji 独立打造核心主项目「JLPT N1 日语学习全栈 Web 系统」（含 726 句型 + 220 核心词与 ETag 多端并发同步），并在同一工作流下研发「片巢 ClipNest」桌面端与「TranscribeHub 转录中心」长音频管线；此外还按主 Web 端逻辑复刻了未公开发布的同源微信小程序版本供个人离线复习使用。'
+          : '主力プロジェクトとして「JLPT N1 日本語学習フルスタック Web システム」（726文法＋220語彙・Kuromoji解析・ETag同期）を実装。さらにデスクトップ「ClipNest」、音声パイプライン「TranscribeHub」を構築し、主力Web版のロジックを移植した非公開ミニプログラム複製版もローカル向けに作成しました。'
     },
     {
       period: lang === 'zh' ? '阶段三 · 机动储备' : 'Phase 03 · 機動力整備',

@@ -1,11 +1,16 @@
 export interface ProjectItem {
   id: string
+  tier: 'flagship' | 'standard' | 'replica'
   title: string
   titleJa: string
   subtitle: string
   subtitleJa: string
   tag: string
+  statusLabel: string
+  statusLabelJa: string
   category: 'ai' | 'web' | 'desktop' | 'miniprogram'
+  relationNote?: string
+  relationNoteJa?: string
   problem: string
   problemJa: string
   solution: string
@@ -71,38 +76,44 @@ export const DEMO_SENTENCES: DemoSentence[] = [
 
 export const PROJECTS: ProjectItem[] = [
   {
-    id: "jlpt-miniprogram",
-    title: "JLPT N1 文法随身练（原生微信小程序）",
-    titleJa: "JLPT N1 文法マスター（WeChatミニプログラム）",
-    subtitle: "726 题纯离线高压缩架构 · 掌握度智能轮转算法 · 原生多媒体流",
-    subtitleJa: "726題完全オフライン圧縮DB・忘却曲線連動ステートマシン・ネイティブ音声連携",
-    tag: "WeChat Mini Program",
-    category: "miniprogram",
-    problem: "市面主流移动端刷题工具大多包体臃肿（动辄数十兆）、强依赖云端服务器网络，在地铁或弱网环境下容易卡顿甚至断流；且错题复习机制粗糙，缺少动态认知记忆曲线与高保真语音联动。",
-    problemJa: "既存の語学アプリは通信依存・大容量で通信環境の悪い場所（地下鉄等）で使えず、復習アルゴリズムが非効率で学習定着率が低い課題を解決。",
-    solution: "完全基于微信原生生态（WXML / WXSS / JavaScript）自主研发，将 726 道高阶语法题库深度压缩至 1.1MB，实现 0 秒冷启动完全离线运行；设计“连续答对 3 次移出错题池”与“今日轮转”状态机算法，并搭载四色词性成分拆解与七海神经网络原声音频。",
-    solutionJa: "WeChatネイティブフレームワークで自作。726題の全DBを1.1MBに超圧縮し、完全オフライン即時起動を実現。3回連続正解で完了判定する独自ステートマシン、品詞別4色構文解析、七海高精度AI音声再生を完全統合。",
+    id: "jlpt-trainer",
+    tier: "flagship",
+    title: "JLPT N1 日语学习全栈 Web 系统（核心主项目）",
+    titleJa: "JLPT N1 日本語学習フルスタック Web システム（主力プロジェクト）",
+    subtitle: "726 条 N1 句型 + 220 条核心词双站体系 · Kuromoji 形态素拆解 · Vercel Blob ETag 云端并发同步",
+    subtitleJa: "726題文法＋220題語彙の2サイト構成・Kuromoji形態素解析・Vercel Blob ETag クラウド同期",
+    tag: "Flagship · Full-Stack Web",
+    statusLabel: "核心主项目 · 主力交付",
+    statusLabelJa: "主力プロジェクト · 運用中",
+    category: "web",
+    problem: "备考高阶日语 JLPT N1 及商务 BJT 时，传统教材与孤立题库难以同时解决「形态素级词性拆解、多设备无冲突进度同步、断网单文件便携训练」三大痛点，跨端刷题记录极易互相覆盖。",
+    problemJa: "N1やBJTの高度な学習において、従来の教材やアプリでは「形態素単位の構文解析」「複数デバイス間の競合しない同期」「オフライン単一HTML持ち出し」を同時に満たすことが困難でした。",
+    solution: "作为个人最核心主打项目，采用 Next.js + React 19 + TypeScript 独立构建文法/词汇全栈 Web 应用：集成 Kuromoji 形态素分析与 Wanakana 注音引擎实时标注词性；基于 Vercel Blob 实现哈希鉴权与 ETag 条件覆盖并发同步（自动重放合并多端记录），内置“错题连对 3 次自动移出”状态机与单文件离线 HTML 打包能力。",
+    solutionJa: "主力プロジェクトとして Next.js＋React 19＋TypeScript で文法・語彙Webシステムを独力開発。Kuromoji形態素解析＆Wanakanaによるリアルタイムふりがな展開、Vercel Blob＋ETag楽観的ロックによる自動リプレイ同期、連続3回正解アーカイブ機構、単一HTMLオフライン書き出しまで一貫実装。",
     highlights: [
-      "726 题大题库压缩至 1.1MB，完全断网零延迟秒开",
-      "自研掌握度算法：连续答对 3 次自动移出错题池",
-      "四色词性精准拆解与 InnerAudioContext 原生音频管理"
+      "726 条 N1 句型 + 220 条高频词库全量审计，内嵌 Kuromoji 分词与四色词性高亮",
+      "Vercel Blob ETag 并发锁与状态重放合并，多端做题进度与学习时长零冲突同步",
+      "配套 Playwright 全链路回归校验（移动端 / 错题池 / 同步面板）与单文件离线导出"
     ],
     highlightsJa: [
-      "726題全問を1.1MBに超圧縮、完全オフライン即時起動",
-      "定着度ステートマシン：3回連続正解で自動アーカイブ",
-      "品詞別4色構文解釈＆WeChatネイティブ音声シームレス連携"
+      "726題文法＋220題語彙の全量監査DB、Kuromoji形態素解析＆品詞別ハイライト実装",
+      "Vercel Blob ETag 楽観的ロック＆履歴リプレイ統合で複数端末間の進捗競合を解消",
+      "Playwright自動回帰テスト（モバイル・誤答フロー・同期パネル）＆単一HTML出力対応"
     ],
-    techStack: ["WeChat WXML/WXSS", "JavaScript", "WeChat Audio API", "Offline DB", "State Machine"],
-    metrics: "整包仅 1.2MB（免网络秒启动），为本人高分通过 N1 语法提供坚实支撑",
-    metricsJa: "パッケージ容量1.2MB・完全通信不要、N1文法対策の主力ツールとして実戦投入"
+    techStack: ["Next.js", "React 19", "TypeScript", "Kuromoji.js", "Wanakana", "Vercel Blob ETag", "Playwright"],
+    metrics: "个人核心主力 Web 应用（946 题库全量校验运行），直接支撑本人以 108 分通过 JLPT N1",
+    metricsJa: "最主力Webプロダクト（全946問・自動検証済）、JLPT N1 (108点) 合格を直接支えた実用基盤"
   },
   {
     id: "clipnest",
+    tier: "standard",
     title: "片巢 ClipNest",
     titleJa: "ClipNest（クリップネスト）",
     subtitle: "原生 macOS 桌面剪贴板与多媒体素材资产管理系统",
     subtitleJa: "macOS ネイティブ志向のクリップボード＆マルチメディア資産管理アプリ",
     tag: "Desktop / Local-First",
+    statusLabel: "Verified · 实战投入",
+    statusLabelJa: "Verified · 実務運用",
     category: "desktop",
     problem: "日常在开发、整理和写作过程中，频繁复制的大量文本、代码块、截图与音视频片段极易遗失；市面现有剪贴板工具要么臃肿耗电，要么缺乏本地化结构化沉淀能力。",
     problemJa: "開発やリサーチ中にコピーしたテキスト・画像・音声断片の散逸を防ぐため、完全ローカル稼働・高速検索・低消費電力にこだわった管理基盤が不足していた課題を解決。",
@@ -124,11 +135,14 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: "transcribe-hub",
+    tier: "standard",
     title: "TranscribeHub 转录中心",
     titleJa: "TranscribeHub（転写ハブ）",
     subtitle: "音视频智能提取、长音频切片与高精度转录工作流",
     subtitleJa: "長尺音声・動画のインテリジェント自動文字起こし＆要約パイプライン",
     tag: "AI Audio Pipeline",
+    statusLabel: "Verified · 300+ hrs",
+    statusLabelJa: "Verified · 300h+",
     category: "ai",
     problem: "处理动辄数小时的长音频播客或海外会议录音时，人工听写耗时费力，传统云端 API 费用高昂且长音频容易遇到网络超时断流与标点混乱问题。",
     problemJa: "数時間に及ぶ長尺ポッドキャストや海外音声をテキスト化する際、手動作業のコストと既存クラウドAPIのタイムアウト・高額コストが大きな障壁となっていた。",
@@ -149,29 +163,34 @@ export const PROJECTS: ProjectItem[] = [
     metricsJa: "累計300時間以上の音声を処理、認識精度98%以上、生産性10倍以上"
   },
   {
-    id: "jlpt-trainer",
-    title: "JLPT N1 句型特训器",
-    titleJa: "JLPT N1 例文・文型トレーナー",
-    subtitle: "基于形态素自然语言分析的全栈日语语法特训 Web 应用",
-    subtitleJa: "形態素解析エンジンを組み込んだフルスタック日本語学習Webアプリ",
-    tag: "Full-Stack Web / NLP",
-    category: "web",
-    problem: "备考高阶日语 JLPT N1 及商务 BJT 时，传统教科书缺乏生动语境，市面题库无法针对中国学习者「懂意思但不会写、不会说」的产出痛点提供形态素即时反馈。",
-    problemJa: "N1やBJTの高度な文法を習得する際、従来の単語帳では「読めるが話せない・書けない」というアウトプット不足に陥りやすい構造的課題を打破。",
-    solution: "采用 Next.js 独立构建全栈 Web 应用，集成 Kuromoji 日本语形态素分析器与 Wanakana 罗马字/假名双向引擎，实现实时注音拆解、高频商务句型特训与随堂测验。",
-    solutionJa: "Next.js と Kuromoji 形態素解析器を組み合わせ、リアルタイムのふりがな展開、品詞分解、ビジネスシーン別文型トレーニングを提供するWebシステムを自作・デプロイ。",
+    id: "jlpt-miniprogram",
+    tier: "replica",
+    title: "JLPT N1 文法随身练（同源小程序复刻版 · 未公开发布）",
+    titleJa: "JLPT N1 文法マスター（Web版移植ミニプログラム · 未公開）",
+    subtitle: "复刻主打日语 Web 项目逻辑的轻量移动端延伸版 · 1.1MB 离线包 · 仅供个人本地自用（未上架）",
+    subtitleJa: "主力Webシステムのロジックを再現した軽量モバイル複製版・1.1MBオフライン（一般未公開）",
+    tag: "Mini Program Replica",
+    statusLabel: "同源复刻 · 未公开发布",
+    statusLabelJa: "Web版複製 · 未公開",
+    category: "miniprogram",
+    relationNote: "本项目为 #1 主打项目「JLPT N1 日语学习全栈 Web 系统」面向微信生态的 1:1 复刻移植版，仅作个人离线复习与跨端技术验证，未在微信平台公开发布。",
+    relationNoteJa: "※ 本ミニプログラムは主力 #1「JLPT N1 Webシステム」の機能・データ構造をWeChat環境向けに再現した移植版です（一般公開なし・個人利用限定）。",
+    problem: "为主力日语 Web 应用补充微信内置随手打开、纯离线免流量秒开的使用场景，需要将 Web 端的核心语法题库与状态机算法轻量化迁移至微信小程序。",
+    problemJa: "主力Webプロジェクトの補助として、通信環境を問わずWeChat内から即起動できるようコアデータと復習ロジックを移植検証。",
+    solution: "直接复用主 Web 端的 726 道语法题库与“连续答对 3 次自动移出”状态机，采用微信原生 WXML / WXSS / JS 1:1 复刻客户端并深度压缩至 1.1MB（整包 1.2MB），结合原生音频 API 供个人手机离线刷题使用；未提交微信公众平台审核或公开发布。",
+    solutionJa: "主力Web版の726題DBと「3回連続正解でアーカイブ」機構をベースに、WeChatネイティブ（WXML/WXSS/JS）で再現・1.1MBへ超圧縮。個人のオフライン学習と技術検証用として構築（ストア公開なし）。",
     highlights: [
-      "内嵌 Kuromoji 日本语分词与形态素解析",
-      "实时假名注音（Furigana）智能高亮",
-      "Vercel 全球 CDN 毫秒级极速响应"
+      "同源复刻主 Web 端题库结构、四色词性高亮与错题轮转状态机",
+      "726 题压缩至 1.1MB / 整包 1.2MB，弱网与离线场景 0 秒冷启动",
+      "严格定位为个人本地自用复制版（未向微信平台公开发布）"
     ],
     highlightsJa: [
-      "Kuromoji形態素解析による品詞分解とリアルタイムふりがな生成",
-      "ビジネス日本語（BJT対策）に特化した文脈別例文データベース",
-      "Next.js App Router ＋ Vercel による高速グローバル配信"
+      "主力Web版のDB構造・品詞4色解析・定着ステートマシンを同源再現",
+      "726題を1.1MBに超圧縮し、オフライン環境でも遅延ゼロで起動",
+      "技術移植検証および個人用クローズド環境として運用（一般未公開）"
     ],
-    techStack: ["Next.js", "React 19", "TypeScript", "Kuromoji.js", "Vercel"],
-    metrics: "支撑高阶日语语法与商务句型高强度训练，显著提升产出流利度",
-    metricsJa: "高度な文法およびビジネス日本語文型の反復習得を支える基幹ツールとして活用"
+    techStack: ["WeChat WXML/WXSS", "JavaScript", "WeChat Audio API", "Offline Compression"],
+    metrics: "主 Web 端核心逻辑的小程序轻量复刻（未公开发布，本地零网络延展验证）",
+    metricsJa: "主力Webシステムの軽量ミニプログラム複製版（一般未公開・個人オフライン運用）"
   }
 ]
