@@ -98,16 +98,29 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ lang }) => {
                 </span>
               </div>
 
-              <p className="text-sm text-zinc-600 leading-relaxed mb-5">
+              <p className="text-sm text-zinc-600 leading-relaxed mb-4">
                 {lang === 'zh'
-                  ? '以独立研发的「JLPT N1 日语学习全栈 Web 系统」为核心主力（集成 Kuromoji 形态素拆解与 ETag 云端并发同步），同步延展出「片巢 ClipNest」桌面客户端、「转录中心」音频管线，并基于该主 Web 端逻辑1:1复刻了一套仅供个人离线自用、未公开发布的微信小程序版本。'
-                  : '「JLPT N1 日本語学習フルスタック Web システム」（Kuromoji解析・ETagクラウド同期搭載）を主力プロダクトとし、デスクトップ「ClipNest」、音声基盤に加え、主Web版のロジックを再現した非公開・個人用のWeChatミニプログラム複製版も構築しています。'}
+                  ? '日常主力使用 Codex、Antigravity 与 DeepSeek Harness 驱动研发，独立落地「JLPT N1 日语学习全栈 Web 系统」（核心主力，含 Kuromoji 拆解与 ETag 云端并发同步）、「片巢 ClipNest」桌面端、「转录中心」音频管线及未公开发布的同源小程序复刻版。'
+                  : 'Codex · Antigravity · DeepSeek Harness を日常の開発基盤として活用し、主力 Web システム（Kuromoji解析・ETag同期）、「ClipNest」、音声基盤、さらに主Web版ロジックを複製した非公開ミニプログラムまで一貫構築。'}
               </p>
             </div>
 
-            <div className="pt-4 border-t border-zinc-200/70 flex items-center justify-between text-xs text-zinc-500 font-mono relative">
-              <span>Next.js · Kuromoji · Electron · Python</span>
-              <span className="text-zinc-900 font-sans font-semibold">{lang === 'zh' ? '下方查验' : '下記で公開'} ↓</span>
+            <div className="pt-4 border-t border-zinc-200/70 space-y-2.5 relative">
+              <div className="flex flex-wrap gap-1.5">
+                <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-800 border border-zinc-200/70">
+                  Codex
+                </span>
+                <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-800 border border-zinc-200/70">
+                  Antigravity
+                </span>
+                <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-800 border border-zinc-200/70">
+                  DeepSeek Harness
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-xs text-zinc-500 font-mono">
+                <span>Next.js · Electron · Python</span>
+                <span className="text-zinc-900 font-sans font-semibold">{lang === 'zh' ? '下方查验' : '下記で公開'} ↓</span>
+              </div>
             </div>
           </SpotlightCard>
 

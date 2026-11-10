@@ -30,12 +30,12 @@ export const CareerStrengths: React.FC<CareerStrengthsProps> = ({ lang }) => {
               </h3>
               <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
                 {lang === 'zh'
-                  ? '不仅是日常打字文员，更善于用 AI 工具链重塑业务流。能独立把枯燥的重复流程、海量音视频资料或表格数据转化为自动化脚本，直接为团队降本增效。'
-                  : '単なる事務処理にとどまらず、最新AI技術を活用して既存の定型業務や長尺コンテンツの整理を自動化。チーム全体の生産性を劇的に向上させます。'}
+                  ? '日常高频实战 Codex、Antigravity 与 DeepSeek Harness，不只是简单对话，更能通过 Agent 工具链与脚本工程把重复业务流、海量音视频或表格数据转化为自动化方案，直接为团队降本增效。'
+                  : 'Codex · Antigravity · DeepSeek Harness を日常的に実戦投入し、単なるチャット利用を超えたワークフロー構築力で定型業務や長尺コンテンツ整理を自動化。チーム全体の生産性を引き上げます。'}
               </p>
             </div>
             <div className="pt-3 border-t border-zinc-200/70 text-xs text-zinc-800 font-semibold relative">
-              • {lang === 'zh' ? '拒绝低效内耗，工程化提效' : '属人化業務の仕組み化・効率化'}
+              • {lang === 'zh' ? 'Codex · Antigravity · DeepSeek Harness 日常实战' : 'Codex · Antigravity · DeepSeek Harness 日常実戦'}
             </div>
           </SpotlightCard>
 

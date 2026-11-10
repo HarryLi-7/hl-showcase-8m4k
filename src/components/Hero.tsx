@@ -59,8 +59,8 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
           {lang === 'zh' ? (
             <>
               你好，我是 <strong className="text-zinc-950 font-semibold">Harry L.</strong>。
-              华南师范大学本科毕业，持有 <strong className="text-zinc-950 font-semibold">JLPT N1（108分）与 BJT J2（448分）</strong>，
-              并借助现代 AI 工程工作流端到端独立落地以{' '}
+              华南师范大学本科毕业，持有 <strong className="text-zinc-950 font-semibold">JLPT N1（108分）与 BJT J2（448分）</strong>；
+              日常深度使用 <strong className="text-zinc-950 font-semibold">Codex · Antigravity · DeepSeek Harness</strong> 驱动研发，端到端独立落地以{' '}
               <strong className="text-zinc-950 font-semibold">JLPT N1 日语学习全栈 Web 系统</strong>为核心主项目的自研工具矩阵（含未公开发布的同源微信小程序复刻版、ClipNest 桌面端及长音频转录管线）。
               现居广州，持有内地 C1 / 香港双驾照及日美长期商务出行签证。
             </>
@@ -68,6 +68,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
             <>
               はじめまして、<strong className="text-zinc-950 font-semibold">Harry L.</strong> と申します。
               華南師範大学（学士）修了、<strong className="text-zinc-950 font-semibold">JLPT N1（108点）・BJT J2（448点）</strong>を取得し、
+              普段より <strong className="text-zinc-950 font-semibold">Codex · Antigravity · DeepSeek Harness</strong> を開発基盤に活用。
               <strong className="text-zinc-950 font-semibold">JLPT N1 日本語学習フルスタック Web システム</strong>を主力プロジェクトとして、同源の未公開ミニプログラム複製版・ClipNest デスクトップ・音声パイプラインまで独力実装いたしました。
               広州拠点・大陸/香港両運転免許および日米長期商用ビザを保有しております。
             </>

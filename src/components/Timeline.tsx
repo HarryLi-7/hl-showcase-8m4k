@@ -25,8 +25,8 @@ export const Timeline: React.FC<TimelineProps> = ({ lang }) => {
       icon: <Cpu className="w-4 h-4 text-[#4285F4]" />,
       desc:
         lang === 'zh'
-          ? '以 Next.js + Kuromoji 独立打造核心主项目「JLPT N1 日语学习全栈 Web 系统」（含 726 句型 + 220 核心词与 ETag 多端并发同步），并在同一工作流下研发「片巢 ClipNest」桌面端与「TranscribeHub 转录中心」长音频管线；此外还按主 Web 端逻辑复刻了未公开发布的同源微信小程序版本供个人离线复习使用。'
-          : '主力プロジェクトとして「JLPT N1 日本語学習フルスタック Web システム」（726文法＋220語彙・Kuromoji解析・ETag同期）を実装。さらにデスクトップ「ClipNest」、音声パイプライン「TranscribeHub」を構築し、主力Web版のロジックを移植した非公開ミニプログラム複製版もローカル向けに作成しました。'
+          ? '日常深度结合 Codex、Antigravity 与 DeepSeek Harness 等 AI Agent 底座进行全栈工程协作，以 Next.js + Kuromoji 独立打造核心主项目「JLPT N1 日语学习全栈 Web 系统」（含 726 句型 + 220 核心词与 ETag 并发同步），并同步研发「片巢 ClipNest」桌面端、「TranscribeHub 转录中心」长音频管线及未公开发布的同源小程序复刻版。'
+          : 'Codex · Antigravity · DeepSeek Harness を日常の開発基盤としてフル活用し、主力プロジェクト「JLPT N1 日本語学習フルスタック Web システム」（726文法＋220語彙・Kuromoji解析・ETag同期）を実装。併せてデスクトップ「ClipNest」、音声パイプライン「TranscribeHub」及び非公開ミニプログラム複製版を構築しました。'
     },
     {
       period: lang === 'zh' ? '阶段三 · 机动储备' : 'Phase 03 · 機動力整備',
