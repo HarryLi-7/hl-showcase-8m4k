@@ -29,7 +29,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
 
         {/* Apple / Paco Editorial Display Typography */}
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-zinc-950 leading-[1.16] sm:leading-[1.08] mb-6"
+          className="hero-display font-extrabold text-zinc-950 leading-[1.16] sm:leading-[1.08] mb-6"
           style={{ letterSpacing: '-0.035em' }}
         >
           {lang === 'zh' ? (
@@ -76,46 +76,46 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
         </p>
 
         {/* Google Material 3 Expressive Pill CTA + Secondary Clean Controls */}
-        <div className="flex flex-wrap items-center gap-3 mb-10 no-print">
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-10 no-print">
           <a
             href="#projects"
-            className="expressive-pill inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold shadow-md shadow-zinc-900/10"
+            className="touch-target expressive-pill inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-zinc-900/10"
           >
-            <ArrowDownRight className="w-4 h-4" />
+            <ArrowDownRight className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '查看主打 Web 与自研作品' : '主力 Web・開発実績を見る'}</span>
           </a>
 
           <button
             type="button"
             onClick={onOpenContact}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-zinc-300/90 bg-white hover:bg-zinc-50 text-zinc-800 text-sm font-semibold transition-colors shadow-2xs cursor-pointer"
+            className="touch-target inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-zinc-300/90 bg-white hover:bg-zinc-50 text-zinc-800 text-sm font-semibold transition-colors shadow-2xs cursor-pointer"
           >
-            <ShieldCheck className="w-4 h-4 text-[#34A853]" />
+            <ShieldCheck className="w-4 h-4 text-[#34A853] shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '联络方式与证件核验' : '連絡先・証明書案内'}</span>
           </button>
 
           <button
             type="button"
             onClick={handlePrint}
-            className="inline-flex items-center gap-1.5 px-4 py-3 rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-700 text-sm font-medium transition-colors cursor-pointer"
+            className="touch-target inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-700 text-sm font-medium transition-colors cursor-pointer"
             title={lang === 'zh' ? '打印或另存为白底 PDF' : 'PDF保存'}
           >
-            <Printer className="w-4 h-4 text-zinc-500" />
+            <Printer className="w-4 h-4 text-zinc-500 shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '导出 PDF' : 'PDF出力'}</span>
           </button>
 
           <a
             href="#interactive-demo"
-            className="inline-flex items-center gap-1.5 px-3 py-3 text-sm font-medium text-zinc-600 hover:text-zinc-950 transition-colors"
+            className="touch-target inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-full text-sm font-medium text-zinc-600 hover:text-zinc-950 transition-colors"
           >
-            <Sparkles className="w-4 h-4 text-[#FBBC05]" />
+            <Sparkles className="w-4 h-4 text-[#FBBC05] shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '试玩日语 Demo' : '語学デモ'}</span>
           </a>
         </div>
 
         {/* Tesla Cockpit Precision Telemetry Strip */}
         <SpotlightCard className="rounded-3xl p-5 sm:p-6">
-          <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-zinc-200/80 relative">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-zinc-200/80 relative">
             <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500">
               SYSTEM TELEMETRY // {lang === 'zh' ? '核心交付与能力指标' : 'CORE METRICS'}
             </span>
@@ -125,32 +125,32 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-0 md:divide-x md:divide-zinc-200/80 relative">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-0 md:divide-x md:divide-zinc-200/80 relative">
             <div className="md:pr-6">
               <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '核心主项目 + 工程矩阵' : '主力 Web＋ツール群'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                Web <span className="text-xs font-sans font-medium text-zinc-500 whitespace-nowrap">{lang === 'zh' ? '主打 + 5 项矩阵交付' : '主力＋5領域群'}</span>
+                Web <span className="block sm:inline text-xs font-sans font-medium text-zinc-500 mt-0.5 sm:mt-0">{lang === 'zh' ? '主打 + 5 项矩阵交付' : '主力＋5領域群'}</span>
               </div>
             </div>
 
             <div className="md:px-6">
               <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '主打 Web 日语题库' : '主力 Web 問題DB'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                946 <span className="text-xs font-sans font-medium text-zinc-500 whitespace-nowrap">{lang === 'zh' ? '题 · 726句+220词' : '問 · 726文+220語'}</span>
+                946 <span className="block sm:inline text-xs font-sans font-medium text-zinc-500 mt-0.5 sm:mt-0">{lang === 'zh' ? '题 · 726句+220词' : '問 · 726文+220語'}</span>
               </div>
             </div>
 
             <div className="md:px-6">
               <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '商务日语双证成绩' : '日本語実務スコア'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                N1 <span className="text-xs font-sans font-medium text-zinc-500 whitespace-nowrap">{lang === 'zh' ? '108分 · BJT J2 (448)' : '108点 · BJT J2 (448)'}</span>
+                N1 <span className="block sm:inline text-xs font-sans font-medium text-zinc-500 mt-0.5 sm:mt-0">{lang === 'zh' ? '108分 · BJT J2 (448)' : '108点 · BJT J2 (448)'}</span>
               </div>
             </div>
 
             <div className="md:pl-6">
               <div className="text-xs text-zinc-500 font-medium">{lang === 'zh' ? '跨端原生与插件覆盖' : '両OSネイティブ＆拡張'}</div>
               <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 font-mono tabular-nums mt-1">
-                Dual <span className="text-xs font-sans font-medium text-zinc-500 whitespace-nowrap">macOS · Android · MV3</span>
+                Dual <span className="block sm:inline text-xs font-sans font-medium text-zinc-500 mt-0.5 sm:mt-0">macOS · Android · MV3</span>
               </div>
             </div>
           </div>

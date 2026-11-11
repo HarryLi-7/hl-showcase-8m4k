@@ -64,10 +64,10 @@ export function App() {
     <div className="min-h-screen flex flex-col font-sans text-zinc-900">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 no-print">
+        <div className="fixed top-[calc(4.75rem+env(safe-area-inset-top,0px))] left-1/2 -translate-x-1/2 z-50 w-max max-w-[calc(100vw-2rem)] no-print">
           <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-900 text-white text-xs sm:text-sm font-semibold shadow-xl border border-zinc-800">
             <span className="w-5 h-5 rounded-full bg-[#34A853] text-white flex items-center justify-center shrink-0">
-              <Check className="w-3 h-3 stroke-[3]" />
+              <Check className="w-3 h-3 stroke-[3]" aria-hidden="true" />
             </span>
             <span>{toastMessage}</span>
           </div>

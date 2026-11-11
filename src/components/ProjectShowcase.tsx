@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import {
   PROJECTS,
   ARCHIVE_CLUSTERS,
@@ -17,6 +17,7 @@ import {
   FolderGit2,
 } from 'lucide-react'
 import { SpotlightCard } from './SpotlightCard'
+import { useScrollFade } from '../hooks/useScrollFade'
 
 interface ProjectShowcaseProps {
   lang: 'zh' | 'ja'
@@ -24,6 +25,8 @@ interface ProjectShowcaseProps {
 
 export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ lang }) => {
   const [filter, setFilter] = useState<'all' | 'web' | 'native' | 'ai' | 'miniprogram'>('all')
+  const filterScrollerRef = useRef<HTMLDivElement>(null)
+  useScrollFade(filterScrollerRef, [lang])
 
   const filteredProjects =
     filter === 'all' ? PROJECTS : PROJECTS.filter((p) => p.category === filter)
@@ -42,7 +45,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ lang }) => {
   }
 
   return (
-    <section id="projects" className="py-12 md:py-16 scroll-mt-16">
+    <section id="projects" className="py-12 md:py-16">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4">
@@ -57,6 +60,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ lang }) => {
 
           {/* Single-Row Crisp Filter Controls */}
           <div
+            ref={filterScrollerRef}
             role="group"
             aria-label={lang === 'zh' ? '按工程类别筛选作品' : 'プロジェクトカテゴリ絞り込み'}
             className="filter-scroller gap-1 p-1 rounded-full bg-zinc-100 border border-zinc-200/80 text-xs font-medium max-w-full self-start lg:self-auto"
@@ -76,9 +80,13 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ lang }) => {
                   aria-pressed={isSelected}
                   onClick={(e) => {
                     setFilter(item.id as typeof filter)
-                    e.currentTarget.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+                    e.currentTarget.scrollIntoView({
+                      block: 'nearest',
+                      inline: 'nearest',
+                      container: 'nearest',
+                    } as ScrollIntoViewOptions)
                   }}
-                  className={`flex-none snap-start min-h-8 px-3 py-1.5 rounded-full transition-colors cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5 ${
+                  className={`touch-target flex-none snap-start px-3 py-1.5 rounded-full transition-colors cursor-pointer whitespace-nowrap inline-flex items-center justify-center gap-1.5 ${
                     isSelected
                       ? 'bg-zinc-900 text-white shadow-2xs ring-1 ring-zinc-900/20'
                       : 'text-zinc-600 hover:text-zinc-950'
@@ -226,7 +234,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ lang }) => {
 
         {/* Progressive Native Disclosure for Deep Module Index (collapsed by default to minimize noise) */}
         <details className="archive-disclosure group mt-5 rounded-3xl bg-white/85 border border-zinc-200/90 shadow-2xs overflow-hidden">
-          <summary className="px-5 sm:px-6 py-4 flex items-center justify-between gap-3 cursor-pointer hover:bg-zinc-50/80 transition-colors select-none">
+          <summary className="touch-target px-5 sm:px-6 py-4 flex items-center justify-between gap-3 cursor-pointer hover:bg-zinc-50/80 transition-colors select-none">
             <span className="flex items-center gap-2.5 min-w-0">
               <FolderGit2 className="w-4 h-4 text-[#4285F4] shrink-0" aria-hidden="true" />
               <span className="text-xs sm:text-sm font-semibold text-zinc-900 leading-snug">

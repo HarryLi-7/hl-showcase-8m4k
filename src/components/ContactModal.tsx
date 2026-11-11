@@ -67,23 +67,23 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       ref={dialogRef}
       {...({ closedby: 'any' } as Record<string, string>)}
       aria-labelledby="contact-dialog-title"
-      className="command-dialog w-[min(92vw,28rem)] rounded-3xl p-0 bg-white text-zinc-900 border border-zinc-200 shadow-2xl m-auto"
+      className="command-dialog w-[min(92vw,28rem)] max-h-[88dvh] overflow-y-auto overscroll-contain rounded-3xl p-0 bg-white text-zinc-900 border border-zinc-200 shadow-2xl m-auto"
     >
-      <div className="p-6 sm:p-7 relative">
+      <div className="p-5 sm:p-7 relative">
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors cursor-pointer"
+          className="touch-target absolute top-3.5 right-3.5 sm:top-5 sm:right-5 p-2 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors cursor-pointer inline-flex items-center justify-center"
           aria-label="Close"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" aria-hidden="true" />
         </button>
 
         {/* Modal Header */}
-        <div className="mb-5 pr-8">
+        <div className="mb-4 sm:mb-5 pr-10">
           <div className="w-10 h-10 rounded-2xl bg-zinc-900 text-white flex items-center justify-center mb-3 shadow-xs">
-            <ShieldCheck className="w-5 h-5 text-[#34A853]" />
+            <ShieldCheck className="w-5 h-5 text-[#34A853]" aria-hidden="true" />
           </div>
           <h3 id="contact-dialog-title" className="text-xl font-bold text-zinc-950 tracking-tight">
             {lang === 'zh' ? '联络沟通与身份核验' : 'ご連絡・各種確認のご案内'}
@@ -96,10 +96,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         </div>
 
         {/* Contact & Verification Rows */}
-        <div className="space-y-2.5 mb-5">
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
+        <div className="space-y-2 sm:space-y-2.5 mb-4 sm:mb-5">
+          <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
             <div className="w-9 h-9 rounded-xl bg-white border border-zinc-200 text-[#4285F4] flex items-center justify-center shrink-0">
-              <Phone className="w-4 h-4" />
+              <Phone className="w-4 h-4" aria-hidden="true" />
             </div>
             <div>
               <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '手机号码' : '電話番号'}</div>
@@ -109,9 +109,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
+          <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
             <div className="w-9 h-9 rounded-xl bg-white border border-zinc-200 text-[#34A853] flex items-center justify-center shrink-0">
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-4 h-4" aria-hidden="true" />
             </div>
             <div>
               <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '微信联系' : 'WeChat'}</div>
@@ -121,9 +121,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
+          <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
             <div className="w-9 h-9 rounded-xl bg-white border border-zinc-200 text-[#EA4335] flex items-center justify-center shrink-0">
-              <Mail className="w-4 h-4" />
+              <Mail className="w-4 h-4" aria-hidden="true" />
             </div>
             <div>
               <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '完整简历与原件核验' : '履歴書・原本確認'}</div>
@@ -135,44 +135,44 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         </div>
 
         {/* Portfolio QR Section */}
-        <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-200/80 mb-4">
-          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-zinc-50 border border-zinc-200/80 mb-4">
+          <div className="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 text-center sm:text-left">
             <div className="p-2 rounded-xl bg-white shadow-2xs shrink-0 border border-zinc-200">
-              <img src="./qrcode.png" alt="作品集网页二维码" width={96} height={96} className="w-24 h-24 object-contain" />
+              <img src="./qrcode.png" alt="作品集网页二维码" width={96} height={96} className="w-20 h-20 sm:w-24 sm:h-24 object-contain" />
             </div>
             <div>
               <div className="text-xs font-bold text-zinc-950 mb-1 flex items-center justify-center sm:justify-start gap-1.5">
-                <QrCode className="w-3.5 h-3.5 text-zinc-700" />
+                <QrCode className="w-3.5 h-3.5 text-zinc-700" aria-hidden="true" />
                 <span>{lang === 'zh' ? '本作品集网页二维码' : 'ポートフォリオQRコード'}</span>
               </div>
-              <p className="text-[11px] text-zinc-500 leading-relaxed mb-2.5">
+              <p className="text-[11px] text-zinc-500 leading-relaxed mb-1.5">
                 {lang === 'zh'
                   ? '扫码可在手机端打开或分享本技能与项目展示页。'
                   : 'スマートフォンでの閲覧・共有にご利用いただけます。'}
               </p>
-              <div className="flex items-center justify-center sm:justify-start gap-3">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <button
                   type="button"
                   onClick={() => onCopyText(siteUrl, 'url')}
-                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-zinc-900 hover:underline cursor-pointer"
+                  className="touch-target inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-semibold text-zinc-900 hover:bg-zinc-200/60 cursor-pointer"
                 >
                   {copiedKey === 'url' ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-[#34A853]" />
+                      <Check className="w-3.5 h-3.5 text-[#34A853]" aria-hidden="true" />
                       <span>{lang === 'zh' ? '已复制链接' : 'コピー済'}</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5" />
+                      <Copy className="w-3.5 h-3.5" aria-hidden="true" />
                       <span>{lang === 'zh' ? '复制页面链接' : 'URLをコピー'}</span>
                     </>
                   )}
                 </button>
-                <span className="text-zinc-300">|</span>
+                <span className="text-zinc-300" aria-hidden="true">|</span>
                 <a
                   href="./qrcode.png"
                   download="portfolio_qrcode.png"
-                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-zinc-600 hover:underline"
+                  className="touch-target inline-flex items-center px-2 py-1 rounded-lg text-[11px] font-semibold text-zinc-600 hover:bg-zinc-200/60"
                 >
                   <span>{lang === 'zh' ? '下载页面二维码' : 'QR画像を保存'}</span>
                 </a>
@@ -183,7 +183,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
         {/* Location Notice */}
         <div className="flex items-center gap-2 p-3 rounded-xl bg-zinc-100 text-xs text-zinc-600">
-          <MapPin className="w-4 h-4 text-[#4285F4] shrink-0" />
+          <MapPin className="w-4 h-4 text-[#4285F4] shrink-0" aria-hidden="true" />
           <span>
             {lang === 'zh'
               ? '常驻城市：广州（中心城区地铁 45 分钟通勤圈 · 内地C1/香港双驾照 · 日5年/美10年商务签）'

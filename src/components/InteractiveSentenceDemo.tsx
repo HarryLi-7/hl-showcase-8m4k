@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { DEMO_SENTENCES, DemoSentence } from '../data/content'
 import { Sparkles, Volume2, BookOpen, Layers, Check } from 'lucide-react'
 import { SpotlightCard } from './SpotlightCard'
+import { useScrollFade } from '../hooks/useScrollFade'
 
 interface InteractiveSentenceDemoProps {
   lang: 'zh' | 'ja'
@@ -12,6 +13,8 @@ export const InteractiveSentenceDemo: React.FC<InteractiveSentenceDemoProps> = (
   const [showFurigana, setShowFurigana] = useState<boolean>(true)
   const [showRomaji, setShowRomaji] = useState<boolean>(false)
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  const demoScrollerRef = useRef<HTMLDivElement>(null)
+  useScrollFade(demoScrollerRef, [lang])
 
   const activeSentence: DemoSentence =
     DEMO_SENTENCES.find((s) => s.id === selectedId) || DEMO_SENTENCES[0]
@@ -66,29 +69,44 @@ export const InteractiveSentenceDemo: React.FC<InteractiveSentenceDemoProps> = (
         </div>
 
         {/* Cockpit-style Interactive Card */}
-        <SpotlightCard className="rounded-3xl p-6 sm:p-8">
+        <SpotlightCard className="rounded-3xl p-5 sm:p-8">
           {/* Segmented Control Sentence Tabs */}
-          <div className="flex flex-wrap gap-2 mb-6 pb-4 border-b border-zinc-200/80 relative">
-            {DEMO_SENTENCES.map((item) => {
-              const active = item.id === selectedId
-              return (
-                <button
-                  type="button"
-                  key={item.id}
-                  onClick={() => setSelectedId(item.id)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
-                    active
-                      ? 'bg-zinc-900 text-white shadow-xs'
-                      : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-900'
-                  }`}
-                >
-                  {lang === 'zh' ? `例句 ${item.id} · ` : `例文 ${item.id} · `}
-                  {item.id === 1 && (lang === 'zh' ? '求职志望动机' : '志望動機・自己PR')}
-                  {item.id === 2 && (lang === 'zh' ? '业务自动化实施' : '業務改善・自動化')}
-                  {item.id === 3 && (lang === 'zh' ? '对日礼仪与协作' : 'ビジネスマナー・協調性')}
-                </button>
-              )
-            })}
+          <div className="mb-6 pb-4 border-b border-zinc-200/80 relative">
+            <div
+              ref={demoScrollerRef}
+              role="group"
+              aria-label={lang === 'zh' ? '选择商务日语例句' : '例文切り替え'}
+              className="filter-scroller gap-2 max-w-full"
+            >
+              {DEMO_SENTENCES.map((item) => {
+                const active = item.id === selectedId
+                return (
+                  <button
+                    type="button"
+                    key={item.id}
+                    aria-pressed={active}
+                    onClick={(e) => {
+                      setSelectedId(item.id)
+                      e.currentTarget.scrollIntoView({
+                        block: 'nearest',
+                        inline: 'nearest',
+                        container: 'nearest',
+                      } as ScrollIntoViewOptions)
+                    }}
+                    className={`touch-target flex-none snap-start px-4 py-2 rounded-full text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap inline-flex items-center justify-center ${
+                      active
+                        ? 'bg-zinc-900 text-white shadow-xs'
+                        : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-900'
+                    }`}
+                  >
+                    {lang === 'zh' ? `例句 ${item.id} · ` : `例文 ${item.id} · `}
+                    {item.id === 1 && (lang === 'zh' ? '求职志望动机' : '志望動機・自己PR')}
+                    {item.id === 2 && (lang === 'zh' ? '业务自动化实施' : '業務改善・自動化')}
+                    {item.id === 3 && (lang === 'zh' ? '对日礼仪与协作' : 'ビジネスマナー・協調性')}
+                  </button>
+                )
+              })}
+            </div>
           </div>
 
           {/* Sentence Display Console */}
@@ -113,12 +131,12 @@ export const InteractiveSentenceDemo: React.FC<InteractiveSentenceDemoProps> = (
                 <button
                   type="button"
                   onClick={() => handleSpeak(activeSentence.japanese)}
-                  className={`expressive-pill inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer ${
+                  className={`touch-target expressive-pill inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer whitespace-nowrap ${
                     isPlaying ? 'ring-2 ring-[#34A853]/40' : ''
                   }`}
                   title={lang === 'zh' ? '点击试听日语朗读' : '日本語音声を再生'}
                 >
-                  <Volume2 className="w-3.5 h-3.5" />
+                  <Volume2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                   <span>{isPlaying ? (lang === 'zh' ? '朗读中...' : '再生中...') : (lang === 'zh' ? '朗读发音' : '音声再生')}</span>
                 </button>
               </div>
@@ -166,24 +184,24 @@ export const InteractiveSentenceDemo: React.FC<InteractiveSentenceDemoProps> = (
           </div>
 
           {/* Controls Footer */}
-          <div className="flex flex-wrap items-center justify-between gap-4 text-xs text-zinc-600 relative">
-            <div className="flex items-center gap-4">
-              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none font-medium">
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 text-xs text-zinc-600 relative">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+              <label className="touch-target inline-flex items-center gap-2 cursor-pointer select-none font-medium pr-2">
                 <input
                   type="checkbox"
                   checked={showFurigana}
                   onChange={(e) => setShowFurigana(e.target.checked)}
-                  className="rounded border-zinc-300 text-zinc-900 accent-zinc-900"
+                  className="w-4 h-4 rounded border-zinc-300 text-zinc-900 accent-zinc-900"
                 />
                 <span>{lang === 'zh' ? '平假名注音' : 'ふりがな表示'}</span>
               </label>
 
-              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none font-medium">
+              <label className="touch-target inline-flex items-center gap-2 cursor-pointer select-none font-medium pr-2">
                 <input
                   type="checkbox"
                   checked={showRomaji}
                   onChange={(e) => setShowRomaji(e.target.checked)}
-                  className="rounded border-zinc-300 text-zinc-900 accent-zinc-900"
+                  className="w-4 h-4 rounded border-zinc-300 text-zinc-900 accent-zinc-900"
                 />
                 <span>{lang === 'zh' ? '罗马音' : 'ローマ字'}</span>
               </label>

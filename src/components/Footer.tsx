@@ -12,11 +12,11 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenContact }) => {
   }
 
   return (
-    <footer className="pt-12 pb-24 border-t border-zinc-200/80 bg-white/70">
+    <footer className="pt-12 safe-footer border-t border-zinc-200/80 bg-white/70">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8 text-center sm:text-left">
           <div>
-            <div className="text-base font-bold text-zinc-950 flex items-center gap-2">
+            <div className="text-base font-bold text-zinc-950 flex flex-wrap items-center justify-center sm:justify-start gap-2">
               <span>Harry L.</span>
               <span className="text-xs font-normal text-zinc-500">
                 {lang === 'zh' ? '· 广州 · AI 工程与商务日语' : '· 広州 · ポートフォリオ'}
@@ -29,22 +29,22 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenContact }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 shrink-0">
             <button
               type="button"
               onClick={onOpenContact}
-              className="expressive-pill px-4 py-2 text-xs font-semibold rounded-full flex items-center gap-1.5 cursor-pointer"
+              className="touch-target expressive-pill px-4 py-2 text-xs font-semibold rounded-full inline-flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
             >
-              <ShieldCheck className="w-3.5 h-3.5" />
+              <ShieldCheck className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
               <span>{lang === 'zh' ? '联络与对接' : '連絡・案内'}</span>
             </button>
             <button
               type="button"
               onClick={scrollToTop}
-              className="p-2 rounded-full border border-zinc-200 bg-white text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition-colors cursor-pointer"
+              className="touch-target p-2 rounded-full border border-zinc-200 bg-white text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition-colors cursor-pointer inline-flex items-center justify-center"
               aria-label="Back to top"
             >
-              <ArrowUp className="w-4 h-4" />
+              <ArrowUp className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         </div>

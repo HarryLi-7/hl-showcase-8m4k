@@ -73,9 +73,9 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
       ref={dialogRef}
       {...({ closedby: 'any' } as Record<string, string>)}
       aria-labelledby="cmd-dialog-title"
-      className="command-dialog rounded-3xl p-0 border border-zinc-200 bg-white text-zinc-900 shadow-2xl w-[min(92vw,30rem)] m-auto"
+      className="command-dialog rounded-3xl p-0 border border-zinc-200 bg-white text-zinc-900 shadow-2xl w-[min(92vw,30rem)] max-h-[88dvh] overflow-y-auto overscroll-contain m-auto"
     >
-      <div className="px-5 py-4 border-b border-zinc-200/80 flex items-center justify-between">
+      <div className="px-5 py-3.5 border-b border-zinc-200/80 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <span className="inline-flex items-center gap-1" aria-hidden="true">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4285F4]" />
@@ -90,11 +90,11 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
         <button
           type="button"
           onClick={onClose}
-          className="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-mono text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors cursor-pointer"
+          className="touch-target inline-flex items-center justify-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors cursor-pointer"
           aria-label="Close"
         >
-          <span>Esc</span>
-          <X className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">Esc</span>
+          <X className="w-4 h-4" aria-hidden="true" />
         </button>
       </div>
 
@@ -106,10 +106,10 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
         <button
           type="button"
           onClick={() => jumpTo('#metrics')}
-          className="w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
+          className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
-            <Compass className="w-4 h-4 text-zinc-500" />
+            <Compass className="w-4 h-4 text-zinc-500 shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '核心能力 Bento 矩阵' : 'コア能力 Bento'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">#metrics</span>
@@ -118,10 +118,10 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
         <button
           type="button"
           onClick={() => jumpTo('#projects')}
-          className="w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
+          className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
-            <Cpu className="w-4 h-4 text-zinc-500" />
+            <Cpu className="w-4 h-4 text-zinc-500 shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '主打日语 Web 系统与多端成果' : '主力 Web ＆自研プロダクト'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">#projects</span>
@@ -130,10 +130,10 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
         <button
           type="button"
           onClick={() => jumpTo('#interactive-demo')}
-          className="w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
+          className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
-            <Sparkles className="w-4 h-4 text-amber-500" />
+            <Sparkles className="w-4 h-4 text-amber-500 shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '日语商务句型交互试听台' : 'ビジネス日本語インタラクティブ検証'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">#demo</span>
@@ -149,10 +149,10 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
             onToggleLang()
             onClose()
           }}
-          className="w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
+          className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
-            <Languages className="w-4 h-4 text-blue-600" />
+            <Languages className="w-4 h-4 text-blue-600 shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '切换界面语言为 日本語' : '表示言語を 中文 に切替'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">ZH / JA</span>
@@ -164,10 +164,10 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
             onClose()
             window.print()
           }}
-          className="w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
+          className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
-            <Printer className="w-4 h-4 text-zinc-500" />
+            <Printer className="w-4 h-4 text-zinc-500 shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '打印或另存为白底 PDF 档案' : '白地PDFとして印刷・保存'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">PDF</span>
@@ -179,10 +179,10 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
             onClose()
             onOpenContact()
           }}
-          className="w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
+          className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" aria-hidden="true" />
             <span>{lang === 'zh' ? '查看联络方式与作品集二维码' : '連絡先・QRコードを見る'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">QR</span>

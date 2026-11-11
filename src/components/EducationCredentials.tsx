@@ -212,7 +212,7 @@ export const EducationCredentials: React.FC<EducationCredentialsProps> = ({ lang
         ref={certDialogRef}
         {...({ closedby: 'any' } as Record<string, string>)}
         aria-labelledby="n1-dialog-title"
-        className="command-dialog w-[min(94vw,46rem)] rounded-3xl p-0 bg-white text-zinc-900 border border-zinc-200 shadow-2xl m-auto"
+        className="command-dialog w-[min(94vw,46rem)] max-h-[88dvh] overflow-y-auto overscroll-contain rounded-3xl p-0 bg-white text-zinc-900 border border-zinc-200 shadow-2xl m-auto"
       >
         <div className="p-4 sm:p-6">
           <div className="flex items-start justify-between gap-4 mb-4">
@@ -230,10 +230,10 @@ export const EducationCredentials: React.FC<EducationCredentialsProps> = ({ lang
             <button
               type="button"
               onClick={() => setIsCertOpen(false)}
-              className="p-2 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors cursor-pointer shrink-0"
+              className="touch-target p-2 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors cursor-pointer shrink-0 inline-flex items-center justify-center"
               aria-label="Close"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
 
@@ -243,13 +243,13 @@ export const EducationCredentials: React.FC<EducationCredentialsProps> = ({ lang
               alt={lang === 'zh' ? 'JLPT N1 官方成绩单完整脱敏图：总分108分（语言知识30、阅读41、听力37）' : 'JLPT N1 公式結果通知書（合計108点）'}
               width={1024}
               height={744}
-              className="w-full h-auto block"
+              className="w-full max-h-[min(58dvh,calc(88dvh-12.5rem))] min-h-[140px] object-contain mx-auto block"
             />
           </div>
 
           <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-zinc-500">
             <span className="flex items-center gap-1.5">
-              <Lock className="w-3.5 h-3.5 text-[#34A853] shrink-0" />
+              <Lock className="w-3.5 h-3.5 text-[#34A853] shrink-0" aria-hidden="true" />
               {lang === 'zh'
                 ? '已对准考证号、个人姓名拼音及证书编号做像素打码，原件可于面试时提供核验。'
                 : '受験番号・氏名・証明書番号のみマスキング処理済み（原本は面談時提示可）。'}
@@ -257,7 +257,7 @@ export const EducationCredentials: React.FC<EducationCredentialsProps> = ({ lang
             <button
               type="button"
               onClick={() => setIsCertOpen(false)}
-              className="expressive-pill px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer self-end sm:self-auto"
+              className="touch-target expressive-pill px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer self-end sm:self-auto inline-flex items-center justify-center"
             >
               {lang === 'zh' ? '关闭预览' : '閉じる'}
             </button>

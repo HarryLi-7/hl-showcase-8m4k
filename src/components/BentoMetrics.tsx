@@ -117,9 +117,9 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ lang }) => {
                   DeepSeek Harness
                 </span>
               </div>
-              <div className="flex items-center justify-between text-xs text-zinc-500 font-mono">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-xs text-zinc-500 font-mono">
                 <span>Next.js · SwiftUI · Kotlin · MV3</span>
-                <span className="text-zinc-900 font-sans font-semibold">{lang === 'zh' ? '下方查验' : '下記で公開'} ↓</span>
+                <span className="text-zinc-900 font-sans font-semibold whitespace-nowrap">{lang === 'zh' ? '下方查验' : '下記で公開'} ↓</span>
               </div>
             </div>
           </SpotlightCard>

@@ -18,8 +18,21 @@
   initial-value: 0px;
 }
 
+@property --fade-start {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fade-end {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
 :root {
   color-scheme: light;
+  --target-size: 32px;
   --canvas-bg: #fcfcfb;
   --card-bg: rgba(255, 255, 255, 0.88);
   --card-border: rgba(15, 23, 42, 0.09);
@@ -32,6 +45,38 @@
   --bounce-easing: linear(0, 0.016 0.5%, 0.06 1%, 0.226 2%, 1.116 5.4%, 1.375 6.6%, 1.527 7.7%, 1.565 8.2%, 1.585 8.8%, 1.581 9.3%, 1.559 9.8%, 1.458 10.9%, 0.937 14.3%, 0.784 15.5%, 0.693 16.6%, 0.67 17.1%, 0.657 17.7%, 0.671 18.7%, 0.729 19.8%, 1.042 23.3%, 1.13 24.5%, 1.182 25.6%, 1.201 26.7%, 1.192 27.7%, 1.156 28.8%, 0.977 32.2%, 0.925 33.4%, 0.894 34.5%, 0.882 35.6%, 0.887 36.6%, 0.907 37.7%, 1.045 42.4%, 1.069 44.5%, 1.059 46.3%, 0.979 50.9%, 0.96 53.4%, 0.966 55.3%, 1.013 59.9%, 1.024 62.3%, 0.986 71.2%, 1.008 79.9%, 0.995 88.9%, 1);
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 transparent;
+}
+
+@media (pointer: coarse) {
+  :root {
+    --target-size: 44px;
+  }
+}
+
+body {
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+/* Fluid Hero Headline scaled safely within WCAG 1.4.4 (max <= 2.5x min) */
+.hero-display {
+  font-size: clamp(1.875rem, 1rem + 3.8vw, 3.75rem);
+}
+
+/* Touch-adaptive interactive control minimum targets (44px on coarse/touch screens) */
+.touch-target {
+  min-block-size: var(--target-size);
+  min-inline-size: var(--target-size);
 }
 
 /* Sunlit ceramic white editorial backdrop with hairline architectural grid */
@@ -175,18 +220,87 @@ dialog.command-dialog::backdrop {
   flex-wrap: balance;
 }
 
-/* Single-row filter bar: stays single-row on desktop and horizontal-scrolls cleanly on tight viewports */
+/* Single-row filter bar: stays single-row on desktop and horizontal-scrolls cleanly with edge fade hints */
 .filter-scroller {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
   scroll-snap-type: inline proximity;
-  scroll-padding-inline: 0.5rem;
+  --fade-size: 2.25rem;
+  --fade-dir: right;
+  scroll-padding-inline: var(--fade-size);
+  mask-image: linear-gradient(
+    to var(--fade-dir),
+    transparent,
+    black var(--fade-start),
+    black calc(100% - var(--fade-end)),
+    transparent
+  );
+  animation: reveal-fade-start auto linear both, hide-fade-end auto linear both;
+  animation-duration: auto;
+  animation-timeline: scroll(self inline);
+  animation-range: 0 var(--fade-size), calc(100% - var(--fade-size)) 100%;
+}
+
+.filter-scroller:dir(rtl) {
+  --fade-dir: left;
+}
+
+@keyframes reveal-fade-start {
+  to {
+    --fade-start: var(--fade-size);
+  }
+}
+
+@keyframes hide-fade-end {
+  from {
+    --fade-end: var(--fade-size);
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .filter-scroller {
+    transition: --fade-start 0.2s, --fade-end 0.2s;
+  }
+
+  .filter-scroller.more-start {
+    --fade-start: var(--fade-size);
+  }
+
+  .filter-scroller.more-end {
+    --fade-end: var(--fade-size);
+  }
 }
 
 .filter-scroller::-webkit-scrollbar {
   display: none;
+}
+
+/* Safe-area spacing utilities for iPhone Dynamic Island / Notch / Home Indicator */
+.safe-header {
+  padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+  padding-inline-start: max(0.75rem, env(safe-area-inset-left, 0px));
+  padding-inline-end: max(0.75rem, env(safe-area-inset-right, 0px));
+}
+
+@media (min-width: 640px) {
+  .safe-header {
+    padding-inline-start: max(1.5rem, env(safe-area-inset-left, 0px));
+    padding-inline-end: max(1.5rem, env(safe-area-inset-right, 0px));
+  }
+}
+
+.safe-dock {
+  bottom: max(1rem, calc(env(safe-area-inset-bottom, 0px) + 0.35rem));
+}
+
+.safe-footer {
+  padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+}
+
+section[id] {
+  scroll-margin-top: calc(5.25rem + env(safe-area-inset-top, 0px));
 }
 
 /* Native disclosure details summary marker cleanup & forced-colors guard */
