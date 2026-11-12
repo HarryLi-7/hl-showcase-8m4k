@@ -186,8 +186,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           <MapPin className="w-4 h-4 text-[#4285F4] shrink-0" aria-hidden="true" />
           <span>
             {lang === 'zh'
-              ? '常驻城市：广州（中心城区地铁 45 分钟通勤圈 · 内地C1/香港双驾照 · 日5年/美10年商务签）'
-              : '拠点エリア：中国・広州（地下鉄45分圏内 · 中港両運転免許 · 日5年/米10年ビザ完備）'}
+              ? '常驻广州 · 广州全域 / 大湾区及远程皆可配合（内地C1/香港双驾照 · 日5年/美10年商务签）'
+              : '広州拠点 · 華南エリア（広深港）＆リモート可（中港両免許・日5年/米10年ビザ完備）'}
           </span>
         </div>
       </div>

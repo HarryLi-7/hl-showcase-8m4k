@@ -89,7 +89,7 @@ export const CareerStrengths: React.FC<CareerStrengthsProps> = ({ lang }) => {
                 {lang === 'zh' ? '华南师范大学本科 · 常驻广州' : '華南師範大学卒（学士）· 広州拠点'}
               </div>
               <div className="text-xs text-zinc-500 mt-0.5">
-                {lang === 'zh' ? '双休 · 五险一金规范保障（地铁 45 分钟通勤圈）' : '完全週休2日・社会保険完備（地下鉄45分圏内）'}
+                {lang === 'zh' ? '双休 · 五险一金规范保障 · 办公方式灵活' : '完全週休2日・社会保険完備・出社/リモート柔軟対応'}
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@ export const CareerStrengths: React.FC<CareerStrengthsProps> = ({ lang }) => {
               {lang === 'zh' ? '心态沉稳 · 注重长期发展' : '安定した長期就労を希望'}
             </span>
             <span className="px-3 py-1 rounded-full bg-zinc-100 text-zinc-800 font-medium border border-zinc-200">
-              {lang === 'zh' ? '支持广州地铁通勤 · 配合短期出差' : '広州市内通勤・短期出張対応可'}
+              {lang === 'zh' ? '大湾区全域及远程协作可 · 配合差旅' : '華南エリア全域＆リモート・出張対応可'}
             </span>
           </div>
         </SpotlightCard>

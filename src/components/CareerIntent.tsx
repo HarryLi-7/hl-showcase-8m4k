@@ -43,13 +43,13 @@ export const CareerIntent: React.FC<CareerIntentProps> = ({ lang }) => {
             <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200/80">
               <div className="flex items-center gap-2 text-zinc-500 mb-1.5 text-xs font-medium">
                 <MapPin className="w-4 h-4 text-[#34A853]" />
-                <span>{lang === 'zh' ? '城市与通勤偏好' : '希望勤務エリア'}</span>
+                <span>{lang === 'zh' ? '坐标与办公配合' : '拠点・勤務エリア'}</span>
               </div>
               <div className="font-bold text-zinc-950 text-sm">
-                {lang === 'zh' ? '广州中心城区 · 地铁 45 分钟通勤圈' : '広州市中心エリア（地下鉄45分圏内）'}
+                {lang === 'zh' ? '现居广州 · 广州全域 / 大湾区可配合' : '広州拠点 · 華南エリア全域対応可'}
               </div>
               <div className="text-zinc-500 text-xs mt-1">
-                {lang === 'zh' ? '支持越秀、天河、海珠等核心城区到岗及远程配合' : '越秀・天河・海珠などの主要ビジネスエリア出社対応'}
+                {lang === 'zh' ? '不限市区，支持广佛深港跨城对接及线上远程协作' : '広州全域および仏山・深セン・香港への移動、リモート連携に柔軟対応'}
               </div>
             </div>
 
