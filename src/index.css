@@ -296,6 +296,7 @@ dialog.command-dialog::backdrop {
 }
 
 section[id],
+article[id],
 details[id] {
   scroll-margin-top: calc(5.25rem + env(safe-area-inset-top, 0px));
 }

@@ -8,6 +8,46 @@ interface BusinessSamplesProps {
 
 type SampleTabId = 'email' | 'minutes'
 
+interface ActionItemRow {
+  id: string
+  taskJa: string
+  taskZh: string
+  taskJaNote: string
+  owner: string
+  ownerJa: string
+  deadline: string
+  statusZh: string
+  statusJa: string
+  statusClass: string
+}
+
+const ACTION_ITEMS: ActionItemRow[] = [
+  {
+    id: 'AI-01',
+    taskJa: '型番 A-204 仕様変更の差分抽出＆日本語修正案作成',
+    taskZh: '对照研发变更单逐条更新日文宣传册参数表',
+    taskJaNote: '開発変更シートと照合し、日本語パンフレットの仕様表を更新',
+    owner: 'Harry L.',
+    ownerJa: 'Harry L.',
+    deadline: '11/13 12:00 JST',
+    statusZh: '进行中',
+    statusJa: '対応中',
+    statusClass: 'bg-blue-50 text-blue-700',
+  },
+  {
+    id: 'AI-02',
+    taskJa: '日本語修正案の最終承認および印刷入稿',
+    taskZh: '日方主管复核修订文稿并确认印刷档定稿',
+    taskJaNote: '日本側責任者による修正案の最終確認・入稿完了',
+    owner: '高桥（日方 PM）',
+    ownerJa: '高橋（JP PM）',
+    deadline: '11/14 17:00 JST',
+    statusZh: '待复核',
+    statusJa: '確認待ち',
+    statusClass: 'bg-zinc-100 text-zinc-700',
+  },
+]
+
 export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
   const [activeTab, setActiveTab] = useState<SampleTabId>('email')
   const emailTabRef = useRef<HTMLButtonElement>(null)
@@ -146,12 +186,15 @@ export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
             <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-zinc-200/80 relative">
               <div>
                 <div className="text-[11px] font-mono text-zinc-500">
-                  SAMPLE 01 // {lang === 'zh' ? '模拟场景：向日本客户/供应商确认交期、外箱唛头及缺失资料' : '想定：納期・ケースマーク・不足通関書類の確認'}
+                  SAMPLE 01 //{' '}
+                  {lang === 'zh'
+                    ? '模拟场景（供货方协调）：向日本采购客户确认交期、外箱唛头变更及清关单证所需材质规格'
+                    : '想定（供給側担当）：日本顧客へ納期・ケースマーク変更期限・インボイス記載材質の確認'}
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-zinc-950 mt-0.5">
                   {lang === 'zh'
-                    ? '对日跟单/运营确认邮件（含发前自检项）'
-                    : '【模擬】出荷納期・ケースマーク・通関書類確認メール'}
+                    ? '对日供货跟单确认邮件（明确时区与双方分工）'
+                    : '【模擬】出荷納期・ケースマーク・通関書類仕様確認メール'}
                 </h3>
               </div>
               <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-600">
@@ -166,7 +209,7 @@ export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
                   <div>
                     <span className="font-semibold text-zinc-500 mr-2">件名：</span>
                     <span className="font-bold text-zinc-950">
-                      【ご確認のお願い】11月出荷分（PO-2026-114）の納期および不足書類について
+                      【ご確認のお願い】11月出荷分（PO-2026-114）の納期・印刷・通関仕様について
                     </span>
                   </div>
                   <div>
@@ -184,30 +227,31 @@ export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
                   <p>
                     いつも大変お世話になっております。広州〇〇の李（Harry）でございます。
                     <br />
-                    ご注文いただいております 11月出荷予定分（発注番号：PO-2026-114）につきまして、手配を進めておりますが、出荷準備にあたり下記 3 点をご確認いただきたくご連絡いたしました。
+                    ご注文いただいております 11月出荷予定分（発注番号：PO-2026-114）につきまして、現在出荷準備を進めております。つきましては、下記 3 点をご確認いただきたくご連絡いたしました。
                   </p>
-                  <div className="p-3 rounded-xl bg-white border border-zinc-200/80 space-y-1.5">
+                  <div className="p-3 rounded-xl bg-white border border-zinc-200/80 space-y-2">
                     <div>
                       <strong className="text-zinc-950">1. 出荷予定日（ETD）について</strong>
                       <br />
-                      工場側より「11月20日（金）出荷可能」との回答がございましたが、貴社ご希望の倉庫搬入スケジュールと相違ございませんでしょうか。
+                      弊社工場より「11月20日（金）出荷可能」との回答がございましたが、貴社ご希望の倉庫搬入スケジュールと相違ございませんでしょうか。
                     </div>
                     <div>
-                      <strong className="text-zinc-950">2. 外箱ケースマークの記載内容について</strong>
+                      <strong className="text-zinc-950">2. 外箱ケースマーク変更の有無（先行締切：11月15日（日）17:00 日本時間）</strong>
                       <br />
-                      前回ロットと同様の品番・ロット番号表記にて準備しております。変更のご希望がございましたら、11月15日（日）17:00 までにデータをご送付いただけますと幸いです。
+                      前回ロットと同様の品番・ロット表記にて準備しております。変更のご希望がない場合はご対応不要です。デザインや表記を変更される場合のみ、印刷手配の都合上、<strong>11月15日（日）17:00（日本時間）</strong>までに変更データをご送付ください。
                     </div>
                     <div>
-                      <strong className="text-zinc-950">3. 通関用書類（インボイス・パッキングリスト）</strong>
+                      <strong className="text-zinc-950">3. 通関用書類（インボイス・パッキングリスト）の材質確認</strong>
                       <br />
-                      輸入申告に必要な「商品材質内訳」の欄が未記入となっておりましたので、恐れ入りますがご確認の上、Excel 形式にてご返送をお願いいたします。
+                      通関書類一式は弊社にて作成いたしますが、記載必須となる「商品材質内訳」のみ貴社最終仕様のご確認をお願いいたします。仕様をご確定いただき次第、弊社にて書類を補完し改めて提出いたします。
                     </div>
                   </div>
                   <p>
-                    お忙しいところ誠に恐れ入りますが、11月16日（月）午前中までにご返信いただけますと幸甚に存じます。
+                    お忙しいところ誠に恐れ入りますが、項目 1・3（および全体スケジュール）につきましては、<strong>11月16日（月）12:00（日本時間）</strong>までにご返信いただけますと幸いです。
                     <br />
-                    何卒よろしくお願い申し上げます。
+                    （※項目 2 の変更ご要望がある場合のみ、上記のとおり 15 日 17:00 までに先行してお知らせください）
                   </p>
+                  <p>何卒よろしくお願い申し上げます。</p>
                 </div>
               </div>
 
@@ -216,24 +260,24 @@ export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
                 <div className="rounded-2xl bg-white border border-zinc-200/90 p-4 flex-1">
                   <div className="text-xs font-bold text-zinc-950 mb-2 flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-[#4285F4]" aria-hidden="true" />
-                    <span>{lang === 'zh' ? '中文要点对照' : 'メール構成のポイント'}</span>
+                    <span>{lang === 'zh' ? '中文要点与职责划分' : 'メール構成・役割分担のポイント'}</span>
                   </div>
                   <ul className="space-y-2 text-xs text-zinc-600 leading-relaxed">
                     <li>
                       <strong className="text-zinc-800">
-                        {lang === 'zh' ? '开头与编号化：' : '結論ファースト＆箇条書き：'}
+                        {lang === 'zh' ? '区分先行截止与日本时间：' : '優先締切と日本時間（JST）の明記：'}
                       </strong>
                       {lang === 'zh'
-                        ? '在首句先交代 PO 单号与来信目的，随后分 1/2/3 点列出具体事项，方便日方担当直接对照序号回复。'
-                        : '件名・本文冒頭で PO番号を明示し、確認事項を番号付きで整理することで相手側の返信漏れを防ぎます。'}
+                        ? '因外箱印刷排产需要提前锁版，在文中明确区分「变更唛头需于周日 17:00（日本时间）前先行提交（无变更可略）」与「整体回复截至周一 12:00（日本时间）」。'
+                        : 'ケースマーク変更のみ印刷都合で 15 日 17:00（JST）を先行締切とし、全体の通常回答期限（16 日 12:00 JST）との優先順を明確化しています。'}
                     </li>
                     <li>
                       <strong className="text-zinc-800">
-                        {lang === 'zh' ? '缓冲词与截止时间：' : 'クッション言葉と回答期限：'}
+                        {lang === 'zh' ? '供货方与采购方分工清晰：' : 'サプライヤー側の作成責任の明確化：'}
                       </strong>
                       {lang === 'zh'
-                        ? '使用「恐れ入りますが」「〜ていただけますと幸いです」缓冲催促感，同时写明具体日期与交付格式（Excel）。'
-                        : '「恐れ入りますが」等の配慮表現を用いつつ、具体的な締切日時・提出形式（Excel）を明確化しています。'}
+                        ? '第 3 点明确发票和装箱单由我方（供货方）制作，只请客户确认「商品材质明细」，避免让客户代填我方单证。'
+                        : 'インボイスとパッキングリストの作成は供給側（弊社）で担い、顧客側には「商品材質の最終仕様確認」のみを依頼する構成としています。'}
                     </li>
                   </ul>
                 </div>
@@ -244,9 +288,9 @@ export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
                     <span>{lang === 'zh' ? '发前核对清单（个人习惯）' : '送信前チェックリスト'}</span>
                   </div>
                   <ul className="space-y-1.5 text-xs text-zinc-600">
-                    <li>• {lang === 'zh' ? 'PO 编号、日期与星期几交叉核对一致' : '発注番号・日付・曜日の整合性確認'}</li>
-                    <li>• {lang === 'zh' ? '收件人社名/部门/「様」敬称与抄送列确认' : '宛名・敬称（「様」）・CC先の確認'}</li>
-                    <li>• {lang === 'zh' ? '缺漏文件写清需要哪种格式及截止时点' : '不足書類の形式指定および返送期限の明記'}</li>
+                    <li>• {lang === 'zh' ? '所有截止时间均标注具体时区（日本时间 JST）' : '全締切日時に日本時間（JST）および曜日を明記'}</li>
+                    <li>• {lang === 'zh' ? '先交项写明前置原因，避免对方漏看先后顺序' : '先行締切がある場合は理由と対象項目を明示'}</li>
+                    <li>• {lang === 'zh' ? '双方权责清楚：对方只确认，我方据此补齐单证' : '自社作成書類と相手方確認項目の切り分けを確認'}</li>
                   </ul>
                 </div>
               </div>
@@ -265,7 +309,10 @@ export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
             <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-zinc-200/80 relative">
               <div>
                 <div className="text-[11px] font-mono text-zinc-500">
-                  SAMPLE 02 // {lang === 'zh' ? '模拟流程：日语会议录音 → TranscribeHub 转写校对 → 中日双语纪要' : '想定：会議音声 → TranscribeHub 文字起こし校正 → 日中行動項目'}
+                  SAMPLE 02 //{' '}
+                  {lang === 'zh'
+                    ? '模拟流程：日语会议录音 → TranscribeHub 转写校对 → 中日双语纪要'
+                    : '想定：会議音声 → TranscribeHub 文字起こし校正 → 日中行動項目'}
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-zinc-950 mt-0.5">
                   {lang === 'zh'
@@ -313,7 +360,7 @@ export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
                     : '自作の TranscribeHub に専門用語リストを読み込ませて一次テキスト化し、型番・固有名詞・期限を人手で厳密確認して共有表へ落とし込みます。'}
                 </p>
                 <a
-                  href="#projects"
+                  href="#transcribe-hub"
                   className="inline-flex items-center gap-1 text-[11px] font-semibold text-white hover:underline mt-2"
                 >
                   <span>{lang === 'zh' ? '查看 TranscribeHub 案例详情' : 'TranscribeHub の詳細を見る'}</span>
@@ -322,8 +369,47 @@ export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
               </div>
             </div>
 
-            {/* Structured Action Items Table */}
-            <div className="overflow-x-auto rounded-2xl border border-zinc-200/90 relative">
+            {/* Mobile (< md): Card-per-Task Layout so text never wraps single-char vertically or clips status */}
+            <div className="md:hidden space-y-3 relative">
+              {ACTION_ITEMS.map((item) => (
+                <div
+                  key={item.id}
+                  className="p-4 rounded-2xl bg-white border border-zinc-200/90 space-y-3"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-mono font-semibold text-zinc-500">{item.id}</span>
+                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${item.statusClass}`}>
+                      {lang === 'zh' ? item.statusZh : item.statusJa}
+                    </span>
+                  </div>
+
+                  <div>
+                    <div className="text-sm font-semibold text-zinc-950 font-jp leading-snug">
+                      {item.taskJa}
+                    </div>
+                    <div className="text-xs text-zinc-600 mt-1 leading-relaxed">
+                      {lang === 'zh' ? item.taskZh : item.taskJaNote}
+                    </div>
+                  </div>
+
+                  <div className="pt-2.5 border-t border-zinc-100 flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-600">
+                    <div>
+                      <span className="text-zinc-500 mr-1">{lang === 'zh' ? '负责人：' : '担当：'}</span>
+                      <span className="font-semibold text-zinc-900">
+                        {lang === 'zh' ? item.owner : item.ownerJa}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-zinc-500 mr-1">{lang === 'zh' ? '截止：' : '期限：'}</span>
+                      <span className="font-mono font-medium text-zinc-900">{item.deadline}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop (>= md): Structured Table */}
+            <div className="hidden md:block overflow-x-auto rounded-2xl border border-zinc-200/90 relative">
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
                   <tr className="bg-zinc-50 border-b border-zinc-200 text-zinc-600 font-semibold">
@@ -335,42 +421,26 @@ export const BusinessSamples: React.FC<BusinessSamplesProps> = ({ lang }) => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-200/70 bg-white text-zinc-700">
-                  <tr>
-                    <td className="py-2.5 px-3.5 font-mono text-zinc-500">AI-01</td>
-                    <td className="py-2.5 px-3.5">
-                      <div className="font-medium text-zinc-900">型番 A-204 仕様変更の差分抽出＆日本語修正案作成</div>
-                      <div className="text-[11px] text-zinc-500 mt-0.5">
-                        {lang === 'zh'
-                          ? '对照研发变更单逐条更新日文宣传册参数表'
-                          : '開発変更シートと照合し、日本語パンフレットの仕様表を更新'}
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-3.5 whitespace-nowrap font-medium">Harry L.</td>
-                    <td className="py-2.5 px-3.5 whitespace-nowrap font-mono">11/13 12:00</td>
-                    <td className="py-2.5 px-3.5 whitespace-nowrap">
-                      <span className="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium">
-                        {lang === 'zh' ? '进行中' : '対応中'}
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="py-2.5 px-3.5 font-mono text-zinc-500">AI-02</td>
-                    <td className="py-2.5 px-3.5">
-                      <div className="font-medium text-zinc-900">日本語修正案の最終承認および印刷入稿</div>
-                      <div className="text-[11px] text-zinc-500 mt-0.5">
-                        {lang === 'zh'
-                          ? '日方主管复核修订文稿并确认印刷档定稿'
-                          : '日本側責任者による修正案の最終確認・入稿完了'}
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-3.5 whitespace-nowrap font-medium">高橋（JP PM）</td>
-                    <td className="py-2.5 px-3.5 whitespace-nowrap font-mono">11/14 17:00</td>
-                    <td className="py-2.5 px-3.5 whitespace-nowrap">
-                      <span className="px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-700 font-medium">
-                        {lang === 'zh' ? '待复核' : '確認待ち'}
-                      </span>
-                    </td>
-                  </tr>
+                  {ACTION_ITEMS.map((item) => (
+                    <tr key={item.id}>
+                      <td className="py-2.5 px-3.5 font-mono text-zinc-500">{item.id}</td>
+                      <td className="py-2.5 px-3.5">
+                        <div className="font-medium text-zinc-900 font-jp">{item.taskJa}</div>
+                        <div className="text-[11px] text-zinc-500 mt-0.5">
+                          {lang === 'zh' ? item.taskZh : item.taskJaNote}
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-3.5 whitespace-nowrap font-medium">
+                        {lang === 'zh' ? item.owner : item.ownerJa}
+                      </td>
+                      <td className="py-2.5 px-3.5 whitespace-nowrap font-mono">{item.deadline}</td>
+                      <td className="py-2.5 px-3.5 whitespace-nowrap">
+                        <span className={`px-2 py-0.5 rounded-full font-medium ${item.statusClass}`}>
+                          {lang === 'zh' ? item.statusZh : item.statusJa}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

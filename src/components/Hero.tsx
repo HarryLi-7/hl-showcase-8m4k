@@ -52,14 +52,14 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
               : '日本語学習ツールと長尺音声文字起こしツールを独力開発。これらの実践力を、日文資料の整理・対日コミュニケーション・業務フロー改善に活かします。'}
           </p>
 
-          {/* Primary Actions: Mobile shows cleanly `查看案例` (since Navbar already keeps `联系我` sticky on top) */}
+          {/* Primary Actions: Mobile shows cleanly `看日语实务样本` (since Navbar already keeps `联系我` sticky on top) */}
           <div className="flex flex-wrap items-center gap-3 no-print">
             <a
-              href="#projects"
+              href="#samples"
               className="touch-target expressive-pill inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm"
             >
               <ArrowDownRight className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>{lang === 'zh' ? '查看案例' : '実績を見る'}</span>
+              <span>{lang === 'zh' ? '看日语实务样本' : '実務サンプルを見る'}</span>
             </a>
 
             <button
@@ -72,10 +72,10 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenContact }) => {
             </button>
 
             <a
-              href="#samples"
+              href="#projects"
               className="touch-target inline-flex items-center justify-center px-3 py-2 rounded-full text-xs sm:text-sm font-medium text-zinc-600 hover:text-zinc-950 transition-colors"
             >
-              {lang === 'zh' ? '先看日语实务样本 ↓' : '実務サンプルへ ↓'}
+              {lang === 'zh' ? '查看精选项目 ↓' : '厳選実績へ ↓'}
             </a>
           </div>
         </div>

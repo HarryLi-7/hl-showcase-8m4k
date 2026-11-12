@@ -83,6 +83,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ lang }) => {
           {FEATURED_PROJECTS.map((project) => (
             <SpotlightCard
               as="article"
+              id={project.id}
               key={project.id}
               className="rounded-3xl p-5 sm:p-7"
             >

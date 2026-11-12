@@ -4,12 +4,14 @@ interface SpotlightCardProps {
   children: React.ReactNode
   className?: string
   as?: 'div' | 'article'
+  id?: string
 }
 
 export const SpotlightCard: React.FC<SpotlightCardProps> = ({
   children,
   className = '',
   as: Tag = 'div',
+  id,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -39,7 +41,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
   }, [])
 
   return (
-    <Tag ref={cardRef} className={`bento-card ${className}`}>
+    <Tag ref={cardRef} id={id} className={`bento-card ${className}`}>
       <div className="spotlight-layer" aria-hidden="true" />
       {children}
     </Tag>
