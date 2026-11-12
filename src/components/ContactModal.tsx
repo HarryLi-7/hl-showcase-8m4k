@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react'
-import { X, ShieldCheck, Phone, MessageSquare, Mail, MapPin, Copy, Check, QrCode } from 'lucide-react'
+import { X, Mail, Send, Copy, Check, QrCode, ShieldCheck } from 'lucide-react'
+import { CONTACT_EMAIL } from '../data/content'
 
 interface ContactModalProps {
   isOpen: boolean
   onClose: () => void
   lang: 'zh' | 'ja'
-  onCopyText: (text: string, label: string) => void
+  onCopyText: (text: string, label: string, toastMsg?: string) => void
   copiedKey: string | null
 }
 
@@ -38,7 +39,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     }
     dialog.addEventListener('close', handleClose)
 
-    // Safari fallback for browsers without declarative closedby="any"
     const handleBackdropClick = (event: MouseEvent) => {
       if ('closedBy' in HTMLDialogElement.prototype) return
       if (event.target !== dialog) return
@@ -60,17 +60,23 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     }
   }, [onClose])
 
-  const siteUrl = typeof window !== 'undefined' ? window.location.href : 'https://harryli-7.github.io/hl-showcase-8m4k/'
+  const siteUrl =
+    typeof window !== 'undefined' ? window.location.href : 'https://harryli-7.github.io/hl-showcase-8m4k/'
+
+  const mailtoSubject = encodeURIComponent(
+    lang === 'zh'
+      ? '【面试邀约/岗位沟通】对日商务运营 / 流程助理 - Harry L.'
+      : '【面接・選考のご連絡】対日ビジネス運営・業務アシスタント - Harry L.'
+  )
 
   return (
     <dialog
       ref={dialogRef}
       {...({ closedby: 'any' } as Record<string, string>)}
       aria-labelledby="contact-dialog-title"
-      className="command-dialog w-[min(92vw,28rem)] max-h-[88dvh] overflow-y-auto overscroll-contain rounded-3xl p-0 bg-white text-zinc-900 border border-zinc-200 shadow-2xl m-auto"
+      className="command-dialog w-[min(92vw,29rem)] max-h-[88dvh] overflow-y-auto overscroll-contain rounded-3xl p-0 bg-white text-zinc-900 border border-zinc-200 shadow-2xl m-auto"
     >
       <div className="p-5 sm:p-7 relative">
-        {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
@@ -83,78 +89,100 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         {/* Modal Header */}
         <div className="mb-4 sm:mb-5 pr-10">
           <div className="w-10 h-10 rounded-2xl bg-zinc-900 text-white flex items-center justify-center mb-3 shadow-xs">
-            <ShieldCheck className="w-5 h-5 text-[#34A853]" aria-hidden="true" />
+            <Mail className="w-5 h-5 text-[#4285F4]" aria-hidden="true" />
           </div>
           <h3 id="contact-dialog-title" className="text-xl font-bold text-zinc-950 tracking-tight">
-            {lang === 'zh' ? '联络沟通与身份核验' : 'ご連絡・各種確認のご案内'}
+            {lang === 'zh' ? '联系我' : 'お問い合わせ・ご連絡'}
           </h3>
           <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
             {lang === 'zh'
-              ? '本页面已公开展示学历、JLPT N1/BJT 成绩与打码版 N1 成绩单；为防爬虫骚扰，手机号、个人微信、邮箱及证件号仅于面试沟通阶段提供。'
-              : '学歴・語学スコア・マスキング済N1証明書は公開済みです。スパム対策のため、連絡先・個人番号のみ選考連絡時にご案内いたします。'}
+              ? '欢迎通过下方求职专用邮箱直接发起联系或发送面试邀约（收到后会尽快回复，并可附完整简历）。'
+              : '採用・面接に関するご連絡は下記の専用メールアドレス宛に直接お送りください。折り返し履歴書等をお送りいたします。'}
           </p>
         </div>
 
-        {/* Contact & Verification Rows */}
-        <div className="space-y-2 sm:space-y-2.5 mb-4 sm:mb-5">
-          <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
-            <div className="w-9 h-9 rounded-xl bg-white border border-zinc-200 text-[#4285F4] flex items-center justify-center shrink-0">
-              <Phone className="w-4 h-4" aria-hidden="true" />
-            </div>
-            <div>
-              <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '手机号码' : '電話番号'}</div>
-              <div className="text-sm font-semibold text-zinc-800">
-                {lang === 'zh' ? '通过招聘平台或私信对接后提供' : '求人媒体・メッセージ経由でご案内'}
-              </div>
-            </div>
+        {/* Direct Email Primary Card */}
+        <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-200/90 mb-4">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+            {lang === 'zh' ? '求职专用邮箱 / DIRECT EMAIL' : '連絡先メールアドレス'}
+          </div>
+          <div className="text-base sm:text-lg font-mono font-bold text-zinc-950 break-all mb-3.5">
+            {CONTACT_EMAIL}
           </div>
 
-          <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
-            <div className="w-9 h-9 rounded-xl bg-white border border-zinc-200 text-[#34A853] flex items-center justify-center shrink-0">
-              <MessageSquare className="w-4 h-4" aria-hidden="true" />
-            </div>
-            <div>
-              <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '微信联系' : 'WeChat'}</div>
-              <div className="text-sm font-semibold text-zinc-800">
-                {lang === 'zh' ? '防爬虫保护中 · 沟通过程中交换对接' : 'スパム防止のため個別にご案内'}
-              </div>
-            </div>
-          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <a
+              href={`mailto:${CONTACT_EMAIL}?subject=${mailtoSubject}`}
+              className="touch-target expressive-pill inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold shadow-xs"
+            >
+              <Send className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              <span>{lang === 'zh' ? '打开邮件客户端发送' : 'メールを送る'}</span>
+            </a>
 
-          <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
-            <div className="w-9 h-9 rounded-xl bg-white border border-zinc-200 text-[#EA4335] flex items-center justify-center shrink-0">
-              <Mail className="w-4 h-4" aria-hidden="true" />
-            </div>
-            <div>
-              <div className="text-[11px] text-zinc-500 font-medium">{lang === 'zh' ? '完整简历与原件核验' : '履歴書・原本確認'}</div>
-              <div className="text-sm font-semibold text-zinc-800">
-                {lang === 'zh' ? '可随时提供完整简历、毕业证及驾照/日美签证原件核验' : '完全版履歴書・卒業証書・免許/ビザ原本提示可'}
-              </div>
-            </div>
+            <button
+              type="button"
+              onClick={() =>
+                onCopyText(
+                  CONTACT_EMAIL,
+                  'email',
+                  lang === 'zh' ? '已复制求职邮箱' : 'メールアドレスをコピーしました'
+                )
+              }
+              className="touch-target inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-800 text-xs font-semibold transition-colors cursor-pointer"
+            >
+              {copiedKey === 'email' ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-[#34A853]" aria-hidden="true" />
+                  <span>{lang === 'zh' ? '已复制邮箱' : 'コピー完了'}</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>{lang === 'zh' ? '复制邮箱地址' : 'アドレスをコピー'}</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
 
-        {/* Portfolio QR Section */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-zinc-50 border border-zinc-200/80 mb-4">
-          <div className="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 text-center sm:text-left">
-            <div className="p-2 rounded-xl bg-white shadow-2xs shrink-0 border border-zinc-200">
-              <img src="./qrcode.png" alt="作品集网页二维码" width={96} height={96} className="w-20 h-20 sm:w-24 sm:h-24 object-contain" />
+        {/* Secondary Privacy & Verification Info */}
+        <div className="flex items-start gap-2.5 p-3.5 rounded-2xl bg-white border border-zinc-200/80 mb-4 text-xs text-zinc-600 leading-relaxed">
+          <ShieldCheck className="w-4 h-4 text-[#34A853] shrink-0 mt-0.5" aria-hidden="true" />
+          <span>
+            {lang === 'zh'
+              ? '为避免公开页面信息被抓取骚扰，手机号与个人微信未在公开页面列示；通过邮箱联系后即可提供完整版简历、微信及各类证书原件核验。'
+              : 'スパム対策として電話番号・WeChat等は非公開としております。メールにてご連絡いただいた後、履歴書および各種原本確認に対応いたします。'}
+          </span>
+        </div>
+
+        {/* Secondary Share / Page Link + QR */}
+        <div className="p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80">
+          <div className="flex items-center gap-3.5">
+            <div className="p-1.5 rounded-xl bg-white shadow-2xs shrink-0 border border-zinc-200">
+              <img
+                src="./qrcode.png"
+                alt={lang === 'zh' ? '本页面访问二维码' : '本ページのQRコード'}
+                width={80}
+                height={80}
+                className="w-16 h-16 object-contain"
+              />
             </div>
-            <div>
-              <div className="text-xs font-bold text-zinc-950 mb-1 flex items-center justify-center sm:justify-start gap-1.5">
-                <QrCode className="w-3.5 h-3.5 text-zinc-700" aria-hidden="true" />
-                <span>{lang === 'zh' ? '本作品集网页二维码' : 'ポートフォリオQRコード'}</span>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-bold text-zinc-900 mb-1 flex items-center gap-1.5">
+                <QrCode className="w-3.5 h-3.5 text-zinc-600" aria-hidden="true" />
+                <span>{lang === 'zh' ? '内部转发与扫码查看' : '社内共有用リンク・QR'}</span>
               </div>
-              <p className="text-[11px] text-zinc-500 leading-relaxed mb-1.5">
-                {lang === 'zh'
-                  ? '扫码可在手机端打开或分享本技能与项目展示页。'
-                  : 'スマートフォンでの閲覧・共有にご利用いただけます。'}
-              </p>
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+              <div className="flex flex-wrap items-center gap-1.5">
                 <button
                   type="button"
-                  onClick={() => onCopyText(siteUrl, 'url')}
-                  className="touch-target inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-semibold text-zinc-900 hover:bg-zinc-200/60 cursor-pointer"
+                  onClick={() =>
+                    onCopyText(
+                      siteUrl,
+                      'url',
+                      lang === 'zh' ? '已复制本页展示链接' : 'ページURLをコピーしました'
+                    )
+                  }
+                  className="touch-target inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-zinc-200/80 text-[11px] font-semibold text-zinc-800 hover:bg-zinc-100 cursor-pointer"
                 >
                   {copiedKey === 'url' ? (
                     <>
@@ -168,27 +196,16 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     </>
                   )}
                 </button>
-                <span className="text-zinc-300" aria-hidden="true">|</span>
                 <a
                   href="./qrcode.png"
                   download="portfolio_qrcode.png"
-                  className="touch-target inline-flex items-center px-2 py-1 rounded-lg text-[11px] font-semibold text-zinc-600 hover:bg-zinc-200/60"
+                  className="touch-target inline-flex items-center px-2.5 py-1 rounded-lg bg-white border border-zinc-200/80 text-[11px] font-semibold text-zinc-600 hover:bg-zinc-100"
                 >
-                  <span>{lang === 'zh' ? '下载页面二维码' : 'QR画像を保存'}</span>
+                  <span>{lang === 'zh' ? '保存二维码' : 'QR保存'}</span>
                 </a>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Location Notice */}
-        <div className="flex items-center gap-2 p-3 rounded-xl bg-zinc-100 text-xs text-zinc-600">
-          <MapPin className="w-4 h-4 text-[#4285F4] shrink-0" aria-hidden="true" />
-          <span>
-            {lang === 'zh'
-              ? '常驻广州 · 广州全域 / 大湾区及远程皆可配合（内地C1/香港双驾照 · 日5年/美10年商务签）'
-              : '広州拠点 · 華南エリア（広深港）＆リモート可（中港両免許・日5年/米10年ビザ完備）'}
-          </span>
         </div>
       </div>
     </dialog>

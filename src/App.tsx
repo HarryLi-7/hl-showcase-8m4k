@@ -2,14 +2,9 @@ import { useState, useEffect } from 'react'
 import confetti from 'canvas-confetti'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
-import { CareerIntent } from './components/CareerIntent'
-import { BentoMetrics } from './components/BentoMetrics'
-import { Timeline } from './components/Timeline'
-import { InteractiveSentenceDemo } from './components/InteractiveSentenceDemo'
+import { BusinessSamples } from './components/BusinessSamples'
 import { ProjectShowcase } from './components/ProjectShowcase'
 import { EducationCredentials } from './components/EducationCredentials'
-import { CareerStrengths } from './components/CareerStrengths'
-import { FloatingDock } from './components/FloatingDock'
 import { Footer } from './components/Footer'
 import { ContactModal } from './components/ContactModal'
 import { CommandDialog } from './components/CommandDialog'
@@ -21,6 +16,14 @@ export function App() {
   const [isCmdOpen, setIsCmdOpen] = useState(false)
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const [copiedKey, setCopiedKey] = useState<string | null>(null)
+
+  useEffect(() => {
+    document.documentElement.lang = lang === 'ja' ? 'ja' : 'zh-CN'
+    document.title =
+      lang === 'ja'
+        ? 'Harry L. | 対日ビジネス運営・業務アシスタント'
+        : 'Harry L. | 对日商务运营 / 流程助理 · 作品与实务样本'
+  }, [lang])
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -51,11 +54,14 @@ export function App() {
     } catch (_) {}
   }
 
-  const handleCopyText = (text: string, key: string) => {
+  const handleCopyText = (text: string, key: string, customToast?: string) => {
     navigator.clipboard.writeText(text).then(() => {
       setCopiedKey(key)
       fireConfetti()
-      triggerToast(lang === 'zh' ? '已复制当前展示页链接' : 'ポートフォリオURLをコピーしました')
+      triggerToast(
+        customToast ||
+          (lang === 'zh' ? '已复制当前展示页链接' : 'ポートフォリオURLをコピーしました')
+      )
       setTimeout(() => setCopiedKey(null), 2500)
     })
   }
@@ -74,7 +80,7 @@ export function App() {
         </div>
       )}
 
-      {/* Apple Liquid Glass Navbar */}
+      {/* Navbar */}
       <Navbar
         lang={lang}
         setLang={setLang}
@@ -82,36 +88,24 @@ export function App() {
         onOpenCommand={() => setIsCmdOpen(true)}
       />
 
-      {/* Main Content Canvas */}
+      {/* Main Content Canvas: 岗位定位 → 日语实务样本 → 两个精选项目 + 例句演示 + 其他作品 → 学历与证书 */}
       <main className="flex-1">
         <Hero
           lang={lang}
           onOpenContact={() => setIsContactOpen(true)}
         />
-        <CareerIntent lang={lang} />
-        <BentoMetrics lang={lang} />
-        <Timeline lang={lang} />
-        <InteractiveSentenceDemo lang={lang} />
+        <BusinessSamples lang={lang} />
         <ProjectShowcase lang={lang} />
         <EducationCredentials lang={lang} />
-        <CareerStrengths lang={lang} />
       </main>
 
-      {/* Floating Bottom Liquid Glass Dock */}
-      <FloatingDock
-        lang={lang}
-        setLang={setLang}
-        onOpenContact={() => setIsContactOpen(true)}
-        onOpenCommand={() => setIsCmdOpen(true)}
-      />
-
-      {/* Editorial Footer */}
+      {/* Footer */}
       <Footer
         lang={lang}
         onOpenContact={() => setIsContactOpen(true)}
       />
 
-      {/* Contact & Privacy Dialog */}
+      {/* Contact Dialog */}
       <ContactModal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}

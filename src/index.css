@@ -291,15 +291,12 @@ dialog.command-dialog::backdrop {
   }
 }
 
-.safe-dock {
-  bottom: max(1rem, calc(env(safe-area-inset-bottom, 0px) + 0.35rem));
-}
-
 .safe-footer {
-  padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+  padding-bottom: max(3rem, env(safe-area-inset-bottom, 0px));
 }
 
-section[id] {
+section[id],
+details[id] {
   scroll-margin-top: calc(5.25rem + env(safe-area-inset-top, 0px));
 }
 

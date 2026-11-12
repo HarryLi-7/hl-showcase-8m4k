@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { X, Compass, Cpu, Sparkles, ShieldCheck, Printer, Languages } from 'lucide-react'
+import { X, FileText, Cpu, Award, FolderGit2, Mail, Printer, Languages } from 'lucide-react'
 
 interface CommandDialogProps {
   isOpen: boolean
@@ -38,7 +38,6 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
     }
     dialog.addEventListener('close', handleClose)
 
-    // Safari fallback for browsers without declarative closedby="any"
     const handleBackdropClick = (event: MouseEvent) => {
       if ('closedBy' in HTMLDialogElement.prototype) return
       if (event.target !== dialog) return
@@ -64,6 +63,9 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
     onClose()
     const target = document.querySelector(selector)
     if (target) {
+      if (selector === '#other-works' && target instanceof HTMLDetailsElement) {
+        target.open = true
+      }
       target.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
@@ -84,7 +86,7 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
             <span className="w-1.5 h-1.5 rounded-full bg-[#34A853]" />
           </span>
           <h2 id="cmd-dialog-title" className="text-sm font-bold tracking-tight">
-            {lang === 'zh' ? '⌘K 快捷导航控制台' : '⌘K クイックナビゲーション'}
+            {lang === 'zh' ? '⌘K 快捷导航' : '⌘K クイックナビゲーション'}
           </h2>
         </div>
         <button
@@ -105,14 +107,14 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
 
         <button
           type="button"
-          onClick={() => jumpTo('#metrics')}
+          onClick={() => jumpTo('#samples')}
           className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
-            <Compass className="w-4 h-4 text-zinc-500 shrink-0" aria-hidden="true" />
-            <span>{lang === 'zh' ? '核心能力 Bento 矩阵' : 'コア能力 Bento'}</span>
+            <FileText className="w-4 h-4 text-zinc-500 shrink-0" aria-hidden="true" />
+            <span>{lang === 'zh' ? '日语实务样本（邮件与会议纪要）' : '実務サンプル（メール・議事録）'}</span>
           </span>
-          <span className="font-mono text-xs text-zinc-500">#metrics</span>
+          <span className="font-mono text-xs text-zinc-500">#samples</span>
         </button>
 
         <button
@@ -122,21 +124,33 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
             <Cpu className="w-4 h-4 text-zinc-500 shrink-0" aria-hidden="true" />
-            <span>{lang === 'zh' ? '主打日语 Web 系统与多端成果' : '主力 Web ＆自研プロダクト'}</span>
+            <span>{lang === 'zh' ? '两个精选项目与例句试听' : '厳選事例 2件＆音声デモ'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">#projects</span>
         </button>
 
         <button
           type="button"
-          onClick={() => jumpTo('#interactive-demo')}
+          onClick={() => jumpTo('#credentials')}
           className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
-            <Sparkles className="w-4 h-4 text-amber-500 shrink-0" aria-hidden="true" />
-            <span>{lang === 'zh' ? '日语商务句型交互试听台' : 'ビジネス日本語インタラクティブ検証'}</span>
+            <Award className="w-4 h-4 text-amber-500 shrink-0" aria-hidden="true" />
+            <span>{lang === 'zh' ? '学历、考级与个人背景' : '学歴・語学スコア・資格'}</span>
           </span>
-          <span className="font-mono text-xs text-zinc-500">#demo</span>
+          <span className="font-mono text-xs text-zinc-500">#credentials</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => jumpTo('#other-works')}
+          className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
+        >
+          <span className="flex items-center gap-2.5 font-medium text-zinc-800">
+            <FolderGit2 className="w-4 h-4 text-zinc-500 shrink-0" aria-hidden="true" />
+            <span>{lang === 'zh' ? '展开其他作品' : 'その他の制作物を開く'}</span>
+          </span>
+          <span className="font-mono text-xs text-zinc-500">#other-works</span>
         </button>
 
         <div className="px-2.5 pt-2 pb-1 text-[11px] font-mono uppercase tracking-wider text-zinc-500 border-t border-zinc-100 mt-1">
@@ -168,7 +182,7 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
             <Printer className="w-4 h-4 text-zinc-500 shrink-0" aria-hidden="true" />
-            <span>{lang === 'zh' ? '打印或另存为白底 PDF 档案' : '白地PDFとして印刷・保存'}</span>
+            <span>{lang === 'zh' ? '打印或另存为白底 PDF' : '白地PDFとして保存'}</span>
           </span>
           <span className="font-mono text-xs text-zinc-500">PDF</span>
         </button>
@@ -182,10 +196,10 @@ export const CommandDialog: React.FC<CommandDialogProps> = ({
           className="touch-target w-full px-3 py-2.5 rounded-xl hover:bg-zinc-100/90 text-left flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer"
         >
           <span className="flex items-center gap-2.5 font-medium text-zinc-800">
-            <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" aria-hidden="true" />
-            <span>{lang === 'zh' ? '查看联络方式与作品集二维码' : '連絡先・QRコードを見る'}</span>
+            <Mail className="w-4 h-4 text-emerald-600 shrink-0" aria-hidden="true" />
+            <span>{lang === 'zh' ? '联系我（获取邮箱与链接）' : '連絡先を見る'}</span>
           </span>
-          <span className="font-mono text-xs text-zinc-500">QR</span>
+          <span className="font-mono text-xs text-zinc-500">EMAIL</span>
         </button>
       </div>
     </dialog>
