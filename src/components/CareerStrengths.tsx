@@ -1,5 +1,5 @@
 import React from 'react'
-import { Rocket, Zap, ShieldAlert, CheckCircle, GraduationCap } from 'lucide-react'
+import { Rocket, Zap, ShieldAlert, CheckCircle, GraduationCap, Activity } from 'lucide-react'
 import { SpotlightCard } from './SpotlightCard'
 
 interface CareerStrengthsProps {
@@ -77,6 +77,55 @@ export const CareerStrengths: React.FC<CareerStrengthsProps> = ({ lang }) => {
             </div>
           </SpotlightCard>
         </div>
+
+        {/* Endurance & Long-Term Discipline Strip */}
+        <SpotlightCard as="article" className="rounded-3xl p-6 mb-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 relative">
+            <div className="max-w-xl">
+              <div className="inline-flex items-center gap-2 text-[11px] font-mono font-semibold uppercase tracking-widest text-zinc-500 mb-2">
+                <Activity className="w-3.5 h-3.5 text-[#EA4335]" aria-hidden="true" />
+                <span>{lang === 'zh' ? 'ENDURANCE & DISCIPLINE // 长期主义与精力管理' : 'ENDURANCE & DISCIPLINE // 体力・継続力・自己管理'}</span>
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-zinc-950 mb-1.5">
+                {lang === 'zh' ? '耐力长跑与数据化自律：用工程思维维持高精力底座' : '持久走とデータに基づく自己管理：継続力を実務の安定感へ'}
+              </h3>
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                {lang === 'zh'
+                  ? '以科学长跑作为稳定精力与抗压习惯，并自写 Python 脚本解析 Garmin FIT 原始数据、复核月跑量与周期负荷，将工程级自律贯穿日常。'
+                  : '日々の職務を支える基礎体力・ストレス耐性・継続力の裏付けとして計画的なランニングを継続。Garmin の生 FIT データを自作 Python スクリプトで解析・負荷管理しています。'}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 shrink-0 lg:w-[31.5rem]">
+              <div className="p-3.5 rounded-2xl bg-zinc-50/90 border border-zinc-200/80">
+                <div className="text-lg sm:text-xl font-black tracking-tight text-zinc-950 font-mono tabular-nums">
+                  1,528+ km
+                </div>
+                <div className="text-[11px] font-medium text-zinc-600 mt-0.5 leading-snug">
+                  {lang === 'zh' ? '2026年165个跑日 · 单月最高200+ km' : '2026年165ラン日 · 単月200km超'}
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-zinc-50/90 border border-zinc-200/80">
+                <div className="text-lg sm:text-xl font-black tracking-tight text-zinc-950 font-mono tabular-nums">
+                  21:04
+                </div>
+                <div className="text-[11px] font-medium text-zinc-600 mt-0.5 leading-snug">
+                  {lang === 'zh' ? "5km官方实测 (4'13\"/km) · VO2Max 58" : "公式5km (4'13\"/km) · VO2Max 58"}
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-zinc-50/90 border border-zinc-200/80">
+                <div className="text-lg sm:text-xl font-black tracking-tight text-zinc-950 font-mono tabular-nums">
+                  Sub 90
+                </div>
+                <div className="text-[11px] font-medium text-zinc-600 mt-0.5 leading-snug">
+                  {lang === 'zh' ? '半马90分内备赛 · 长期全马Sub3' : 'ハーフ90分目標 · 長期フルSub3'}
+                </div>
+              </div>
+            </div>
+          </div>
+        </SpotlightCard>
 
         {/* Summary Strip */}
         <SpotlightCard className="rounded-3xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

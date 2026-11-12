@@ -55,15 +55,15 @@ export const EducationCredentials: React.FC<EducationCredentialsProps> = ({ lang
   const credentials = [
     {
       id: 'education',
-      title: lang === 'zh' ? '华南师范大学 · 本科' : '華南師範大学（学士課程）',
-      subtitle: lang === 'zh' ? '本科学历（学士学位背景）' : '学士（大学卒業）',
-      tag: lang === 'zh' ? '高等教育学历' : '高等教育',
+      title: lang === 'zh' ? '华南师范大学 · 本科' : '華南師範大学 · 本科（大学卒業）',
+      subtitle: lang === 'zh' ? '人力资源管理 · 管理学学士学位' : '人的資源管理専攻 · 管理学学士学位',
+      tag: lang === 'zh' ? '高等教育双证' : '学歴・学位',
       icon: <GraduationCap className="w-5 h-5 text-[#4285F4]" />,
       detail:
         lang === 'zh'
-          ? '系统完成本科阶段高等教育学习与能力积累，学历及证件原件可在正式面试环节随时查验。'
-          : '華南師範大学にて学士課程を修了。公的証明書は採用選考時にいつでもご提示可能です。',
-      footerText: lang === 'zh' ? '学历公开可查 · 支持面试核验' : '正規学歴・原本確認可',
+          ? '已完成本科阶段系统学习并取得管理学学士学位，学信网学历及学位信息齐全，原件可在正式面试环节随时查验。'
+          : '華南師範大学にて人的資源管理を専攻し、管理学学士学位を取得。公的学歴・学位証明書は採用選考時にいつでもご提示可能です。',
+      footerText: lang === 'zh' ? '学信网学历/学位可查 · 支持面试核验' : '公的学歴・学位確認可 · 面談時提示可',
       isLocked: false,
     },
     {
