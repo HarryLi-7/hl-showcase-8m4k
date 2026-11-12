@@ -60,7 +60,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     }
   }, [onClose])
 
-  const siteUrl = typeof window !== 'undefined' ? window.location.href : 'https://harryli-7.github.io/portfolio/'
+  const siteUrl = typeof window !== 'undefined' ? window.location.href : 'https://harryli-7.github.io/hl-showcase-8m4k/'
 
   return (
     <dialog
